@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Warta & Kabar Terbaru - LARASA Coffee</title>
+    <!-- Google Fonts: Plus Jakarta Sans, Inter, Great Vibes & Newsreader -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS (Wajib kombinasi nama endru_) -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Specific Styles untuk Halaman Berita (Prefix: endru_news_*) */
+        .endru_news_hero {
+            background-color: var(--color-warm-beige);
+            padding: 95px 0 65px;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+        .endru_news_kicker {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--color-coffee-brown);
+            margin-bottom: 12px;
+        }
+        .endru_news_headline {
+            font-family: 'Newsreader', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--color-espresso);
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+        .endru_news_headline em {
+            font-style: italic;
+            color: var(--color-coffee-brown);
+        }
+        .endru_news_sub {
+            font-size: 1.15rem;
+            color: var(--color-text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .endru_news_section {
+            padding: 90px 0 130px;
+            background-color: var(--color-soft-white);
+        }
+        .endru_news_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 36px;
+        }
+        @media (min-width: 768px) {
+            .endru_news_grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .endru_news_grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .endru_news_card {
+            background-color: var(--color-surface-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .endru_news_card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-coffee-brown);
+        }
+        .endru_news_img_wrap {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background-color: var(--color-warm-beige);
+        }
+        .endru_news_img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 350ms ease;
+        }
+        .endru_news_card:hover .endru_news_img {
+            transform: scale(1.05);
+        }
+        .endru_news_badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background-color: rgba(48, 40, 32, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--color-text-inverse);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+        }
+        .endru_news_body {
+            padding: 30px 26px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+        .endru_news_meta {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .endru_news_title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--color-espresso);
+            line-height: 1.35;
+            margin-bottom: 14px;
+            letter-spacing: -0.015em;
+        }
+        .endru_news_excerpt {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+        }
+        .endru_news_link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-coffee-brown);
+            font-weight: 600;
+            font-size: 14px;
+            transition: gap 150ms ease;
+        }
+        .endru_news_link:hover {
+            color: var(--color-espresso);
+            gap: 12px;
+        }
+        .endru_news_back_btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-espresso);
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 22px;
+            transition: color 150ms ease;
+        }
+        .endru_news_back_btn:hover {
+            color: var(--color-coffee-brown);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- BEGIN: MainHeader (#endru_header) -->
+    <header id="endru_header" data-purpose="navigation-header">
+        <div class="endru_container endru_header_inner">
+            <!-- Brand Logo (Left) -->
+            <a aria-label="Beranda LARASA" class="endru_brand_logo" data-purpose="brand-logo" href="index.html">
+                <img class="endru_logo_image" src="assets/images/logo.png" alt="LARASA Coffee Logo">
+            </a>
+
+            <!-- Mobile Hamburger Toggle Button -->
+            <button id="endru_mobile_toggle" class="endru_mobile_toggle" aria-label="Buka Menu Navigasi">
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+            </button>
+
+            <!-- Center Navigation Links -->
+            <nav aria-label="Main Navigation" id="endru_nav_links" class="endru_nav_links">
+                <a class="endru_nav_link" href="index.html">Beranda</a>
+                <a class="endru_nav_link" href="ourstory.html">Our Story</a>
+                <a class="endru_nav_link endru_nav_link_active" href="berita.html">Berita</a>
+                <a class="endru_nav_link" href="menu.html">Menu</a>
+                <a class="endru_nav_link" href="shop.html">Shop</a>
+                <a class="endru_nav_link" href="galeri.html">Galeri</a>
+                <a class="endru_nav_link" href="loyalty.html">Loyalty</a>
+                <a class="endru_nav_link" href="index.html#endru_contact">Kontak</a>
+            </nav>
+        </div>
+    </header>
+    <!-- END: MainHeader -->
+
+    <main>
+        <!-- News Hero Banner -->
+        <section class="endru_news_hero">
+            <div class="endru_container">
+                <h1 class="endru_news_headline">KABAR & AGENDA KEDAI</h1>
+                <p class="endru_news_sub">
+                    Ikuti kabar terbaru dari kami, mulai dari promo spesial, acara nobar, hingga diskon menarik. Jangan sampai ketinggalan informasi penting seputar LARASA Coffee!
+                </p>
+            </div>
+        </section>
+
+        <!-- News Articles Grid -->
+        <section class="endru_news_section">
+            <div class="endru_container">
+                <div class="endru_news_grid">
+                    <!-- Berita 1: Promo Buy 1 Get 1 (sama dengan homepage) -->
+                    <article class="endru_news_card">
+                        <div class="endru_news_img_wrap">
+                            <img class="endru_news_img" src="assets/images/Buy_one.jpg" alt="Promo Buy 1 Get 1">
+                            <span class="endru_news_badge">Promo</span>
+                        </div>
+                        <div class="endru_news_body">
+                            <div>
+                                <div class="endru_news_meta">
+                                    <span>18 November 2026</span> • <span>Promo Spesial</span>
+                                </div>
+                                <h2 class="endru_news_title">Promo Spesial Semua Menu Buy 1 Get 1</h2>
+                                <p class="endru_news_excerpt">
+                                    Rayakan akhir tahun bersama orang tersayang! Semua menu minuman berlaku promo beli satu gratis satu selama periode 1 Desember 2026 hingga 1 Januari 2027.
+                                </p>
+                            </div>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Berita 2: Nobar Persib (sama dengan homepage) -->
+                    <article class="endru_news_card">
+                        <div class="endru_news_img_wrap">
+                            <img class="endru_news_img" src="assets/images/nobar.jpg" alt="Nobar Persib">
+                            <span class="endru_news_badge">Event</span>
+                        </div>
+                        <div class="endru_news_body">
+                            <div>
+                                <div class="endru_news_meta">
+                                    <span>10 November 2026</span> • <span>Acara Kedai</span>
+                                </div>
+                                <h2 class="endru_news_title">Acara Nobar Persib Setiap Pertandingan</h2>
+                                <p class="endru_news_excerpt">
+                                    Dukung Maung Bandung bareng komunitas Bobotoh di LARASA! Tersedia area outdoor dan indoor dengan layar lebar dan paket nonton hemat.
+                                </p>
+                            </div>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Berita 3: Diskon Baju Persib (sama dengan homepage) -->
+                    <article class="endru_news_card">
+                        <div class="endru_news_img_wrap">
+                            <img class="endru_news_img" src="assets/images/Baju_Persib.jpg" alt="Diskon Jersey Persib">
+                            <span class="endru_news_badge">Promo</span>
+                        </div>
+                        <div class="endru_news_body">
+                            <div>
+                                <div class="endru_news_meta">
+                                    <span>5 November 2026</span> • <span>Promo Spesial</span>
+                                </div>
+                                <h2 class="endru_news_title">Diskon 10% Jajan Pakai Baju Persib</h2>
+                                <p class="endru_news_excerpt">
+                                    Tunjukkan jersey atau atribut Persib saat memesan dan dapatkan potongan 10% untuk semua menu. Berlaku setiap hari pertandingan Persib Bandung.
+                                </p>
+                            </div>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- BEGIN: Footer (#endru_footer) -->
+    <footer id="endru_footer">
+        <div class="endru_container endru_footer_inner">
+            <div>
+                <span class="endru_footer_brand">LARASA Coffee</span>
+                <span>© 2026 Hak Cipta Dilindungi — Dibuat oleh Endru.</span>
+            </div>
+            <div class="endru_footer_links">
+                <a href="index.html#endru_hero" class="endru_footer_link">Beranda</a>
+                <a href="ourstory.html" class="endru_footer_link">Our Story</a>
+                <a href="berita.html" class="endru_footer_link">Berita</a>
+                <a href="menu.html" class="endru_footer_link">Menu</a>
+                <a href="shop.html" class="endru_footer_link">Shop</a>
+                <a href="galeri.html" class="endru_footer_link">Galeri</a>
+                <a href="loyalty.html" class="endru_footer_link">Loyalty</a>
+                <a href="index.html#endru_contact" class="endru_footer_link">Kontak</a>
+            </div>
+        </div>
+    </footer>
+    <!-- END: Footer -->
+
+    <!-- Interactive JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

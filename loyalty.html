@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>LARASA VIP - Loyalty & Keuntungan Member</title>
+    <!-- Google Fonts: Plus Jakarta Sans, Inter, Great Vibes & Newsreader -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS (Wajib kombinasi nama endru_) -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ==========================================================================
+           Halaman Loyalty / LARASA VIP (Prefix: endru_loyalty_*)
+           Warna background disesuaikan dengan tema LARASA: Espresso & Warm Earthy
+           ========================================================================== */
+
+        /* 1. Hero Section */
+        .endru_loyalty_hero {
+            background-color: var(--color-espresso);
+            background-image: 
+                radial-gradient(circle at 80% 30%, rgba(152, 118, 91, 0.28) 0%, transparent 60%),
+                radial-gradient(circle at 10% 80%, rgba(234, 226, 216, 0.08) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(48, 40, 32, 0.92) 0%, var(--color-espresso) 100%);
+            padding: 120px 0 110px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(152, 118, 91, 0.3);
+        }
+
+        .endru_loyalty_hero_inner {
+            max-width: 820px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .endru_loyalty_kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--color-warm-beige);
+            margin-bottom: 20px;
+            background: rgba(152, 118, 91, 0.25);
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(152, 118, 91, 0.4);
+        }
+
+        .endru_loyalty_hero_title {
+            font-family: 'Newsreader', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--color-soft-white);
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .endru_loyalty_hero_desc {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--color-warm-beige);
+            margin-bottom: 40px;
+            max-width: 680px;
+            opacity: 0.95;
+        }
+
+        .endru_loyalty_hero_actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .endru_loyalty_btn_gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #DFD2BE 0%, var(--color-warm-beige) 50%, #C4AE91 100%);
+            color: var(--color-espresso);
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 16px 32px;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            transition: all 250ms ease;
+        }
+
+        .endru_loyalty_btn_gold:hover {
+}
+
+        .endru_loyalty_btn_outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(250, 249, 246, 0.08);
+            color: var(--color-soft-white);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 15px 28px;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(250, 249, 246, 0.28);
+            text-decoration: none;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: all 250ms ease;
+        }
+
+        .endru_loyalty_btn_outline:hover {
+            background-color: rgba(250, 249, 246, 0.18);
+            border-color: var(--color-warm-beige);
+            color: var(--color-warm-beige);
+        }
+
+        /* 2. Benefits Section */
+        .endru_loyalty_benefits_section {
+            background-color: var(--color-espresso);
+            padding: 100px 0 120px;
+            border-bottom: 1px solid rgba(152, 118, 91, 0.25);
+            position: relative;
+        }
+
+        .endru_loyalty_section_title {
+            font-family: 'Newsreader', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--color-soft-white);
+            line-height: 1.2;
+            margin-bottom: 56px;
+            letter-spacing: -0.02em;
+        }
+
+        .endru_loyalty_benefits_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px 60px;
+        }
+
+        @media (min-width: 768px) {
+            .endru_loyalty_benefits_grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .endru_loyalty_benefit_item {
+            position: relative;
+            padding-left: 36px;
+        }
+
+        .endru_loyalty_bullet {
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: var(--color-coffee-brown);
+            box-shadow: 0 0 12px rgba(152, 118, 91, 0.6);
+        }
+
+        .endru_loyalty_benefit_title {
+            font-family: 'Newsreader', serif;
+            font-size: 1.75rem;
+            font-weight: 500;
+            color: var(--color-soft-white);
+            margin-bottom: 10px;
+            line-height: 1.25;
+        }
+
+        .endru_loyalty_benefit_desc {
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: var(--color-warm-beige);
+            opacity: 0.88;
+        }
+
+        /* 3. Tiers Section */
+        .endru_loyalty_tiers_section {
+            background-color: var(--color-soft-white);
+            padding: 100px 0 120px;
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+
+        .endru_loyalty_tiers_header {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 60px;
+        }
+
+        .endru_loyalty_tiers_title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-espresso);
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+
+        .endru_loyalty_tiers_desc {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+        }
+
+        .endru_loyalty_tiers_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .endru_loyalty_tiers_grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .endru_loyalty_tier_card {
+            background-color: var(--color-surface-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 36px 30px;
+            box-shadow: var(--shadow-soft);
+            transition: all 250ms ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .endru_loyalty_tier_card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-coffee-brown);
+        }
+
+        .endru_loyalty_tier_badge {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .endru_tier_silver .endru_loyalty_tier_badge {
+            background-color: #E2E8F0;
+            color: #475569;
+        }
+
+        .endru_tier_gold .endru_loyalty_tier_badge {
+            background-color: #FEF3C7;
+            color: #92400E;
+        }
+
+        .endru_tier_black .endru_loyalty_tier_badge {
+            background-color: var(--color-espresso);
+            color: var(--color-warm-beige);
+        }
+
+        .endru_loyalty_tier_name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-espresso);
+            margin-bottom: 8px;
+        }
+
+        .endru_loyalty_tier_req {
+            font-size: 0.95rem;
+            color: var(--color-coffee-brown);
+            font-weight: 600;
+            margin-bottom: 24px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+
+        .endru_loyalty_tier_features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .endru_loyalty_tier_feature {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1.4;
+        }
+
+        .endru_loyalty_tier_check {
+            color: var(--color-coffee-brown);
+            font-weight: bold;
+        }
+
+        /* 4. Registration Section */
+        .endru_loyalty_register_section {
+            background-color: var(--color-warm-beige);
+            padding: 100px 0 120px;
+        }
+
+        .endru_loyalty_register_card {
+            background-color: var(--color-surface-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 48px 40px;
+            max-width: 680px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .endru_loyalty_register_title {
+            font-family: 'Newsreader', serif;
+            font-size: 2.25rem;
+            color: var(--color-espresso);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .endru_loyalty_register_subtitle {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .endru_loyalty_form_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 640px) {
+            .endru_loyalty_form_grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .endru_form_full {
+                grid-column: span 2;
+            }
+        }
+
+        .endru_loyalty_field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .endru_loyalty_label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-espresso);
+        }
+
+        .endru_loyalty_input {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border-subtle);
+            background-color: var(--color-soft-white);
+            color: var(--color-espresso);
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 200ms ease;
+        }
+
+        .endru_loyalty_input:focus {
+            outline: none;
+            border-color: var(--color-coffee-brown);
+            background-color: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(152, 118, 91, 0.15);
+        }
+
+        .endru_loyalty_submit_btn {
+            width: 100%;
+            background-color: var(--color-coffee-brown);
+            color: var(--color-text-inverse);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 16px 24px;
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all 200ms ease;
+            margin-top: 12px;
+        }
+
+        .endru_loyalty_submit_btn:hover {
+            background-color: var(--color-espresso);
+        }
+
+        .endru_loyalty_success_msg {
+            display: none;
+            background-color: #ECFDF5;
+            border: 1px solid #10B981;
+            color: #065F46;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- BEGIN: MainHeader (#endru_header) -->
+    <header id="endru_header" data-purpose="navigation-header">
+        <div class="endru_container endru_header_inner">
+            <!-- Brand Logo (Left) -->
+            <a aria-label="Beranda LARASA" class="endru_brand_logo" data-purpose="brand-logo" href="index.html">
+                <img class="endru_logo_image" src="assets/images/logo.png" alt="LARASA Coffee Logo">
+            </a>
+
+            <!-- Mobile Hamburger Toggle Button -->
+            <button id="endru_mobile_toggle" class="endru_mobile_toggle" aria-label="Buka Menu Navigasi">
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+            </button>
+
+            <!-- Center Navigation Links -->
+            <nav aria-label="Main Navigation" id="endru_nav_links" class="endru_nav_links">
+                <a class="endru_nav_link" href="index.html">Beranda</a>
+                <a class="endru_nav_link" href="ourstory.html">Our Story</a>
+                <a class="endru_nav_link" href="berita.html">Berita</a>
+                <a class="endru_nav_link" href="menu.html">Menu</a>
+                <a class="endru_nav_link" href="shop.html">Shop</a>
+                <a class="endru_nav_link" href="galeri.html">Galeri</a>
+                <a class="endru_nav_link endru_nav_link_active" href="loyalty.html">Loyalty</a>
+                <a class="endru_nav_link" href="index.html#endru_contact">Kontak</a>
+            </nav>
+        </div>
+    </header>
+    <!-- END: MainHeader -->
+
+    <main>
+        <!-- 1. Hero Loyalty Section (Sesuai Gambar 1: Background disesuaikan ke tema LARASA Espresso) -->
+        <section id="endru_loyalty_hero" class="endru_loyalty_hero">
+            <div class="endru_container">
+                <div class="endru_loyalty_hero_inner">
+                    <div class="endru_loyalty_kicker">
+                        <span>★</span> LARASA VIP Membership
+                    </div>
+                    <h1 class="endru_loyalty_hero_title">
+                        Nikmati Keuntungan Lebih di Setiap Cangkir Kopi!
+                    </h1>
+                    <p class="endru_loyalty_hero_desc">
+                        Bergabunglah dengan LARASA VIP dan nikmati benefit khusus, cashback, serta penawaran menarik setiap kali kamu bertransaksi.
+                    </p>
+                    <div class="endru_loyalty_hero_actions">
+                        <a href="#endru_loyalty_register" class="endru_loyalty_btn_gold">
+                            <span>♥</span> Gabung Gratis Sekarang! &rarr;
+                        </a>
+                        <a href="#endru_loyalty_benefits" class="endru_loyalty_btn_outline">
+                            Lihat Benefit Member &darr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Benefits Section (Sesuai Gambar 2: 4 Poin Keuntungan Member) -->
+        <section id="endru_loyalty_benefits" class="endru_loyalty_benefits_section">
+            <div class="endru_container">
+                <h2 class="endru_loyalty_section_title">
+                    Keuntungan Member LARASA VIP
+                </h2>
+
+                <div class="endru_loyalty_benefits_grid">
+                    <!-- Benefit 1 -->
+                    <div class="endru_loyalty_benefit_item">
+                        <div class="endru_loyalty_bullet"></div>
+                        <h3 class="endru_loyalty_benefit_title">Cashback di Setiap Transaksi</h3>
+                        <p class="endru_loyalty_benefit_desc">
+                            Dapatkan Cashback hingga 10% dari setiap transaksimu. Khusus Gold &amp; Black.
+                        </p>
+                    </div>
+
+                    <!-- Benefit 2 -->
+                    <div class="endru_loyalty_benefit_item">
+                        <div class="endru_loyalty_bullet"></div>
+                        <h3 class="endru_loyalty_benefit_title">Hadiah Ulang Tahun</h3>
+                        <p class="endru_loyalty_benefit_desc">
+                            Voucher spesial untuk merayakan hari spesialmu. Khusus Gold &amp; Black.
+                        </p>
+                    </div>
+
+                    <!-- Benefit 3 -->
+                    <div class="endru_loyalty_benefit_item">
+                        <div class="endru_loyalty_bullet"></div>
+                        <h3 class="endru_loyalty_benefit_title">Coba Gratis Menu Baru</h3>
+                        <p class="endru_loyalty_benefit_desc">
+                            Nikmati kesempatan mencoba kreasi menu terbaru LARASA Coffee (syarat &amp; ketentuan berlaku, khusus Black).
+                        </p>
+                    </div>
+
+                    <!-- Benefit 4 -->
+                    <div class="endru_loyalty_benefit_item">
+                        <div class="endru_loyalty_bullet"></div>
+                        <h3 class="endru_loyalty_benefit_title">Banyak Keuntungan Eksklusif Member</h3>
+                        <p class="endru_loyalty_benefit_desc">
+                            Nikmati beragam keuntungan spesial sebagai member LARASA VIP.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Member Tiers Section -->
+        <section id="endru_loyalty_tiers" class="endru_loyalty_tiers_section">
+            <div class="endru_container">
+                <div class="endru_loyalty_tiers_header">
+                    <h2 class="endru_loyalty_tiers_title">Jenjang Keanggotaan</h2>
+                    <p class="endru_loyalty_tiers_desc">Tingkatkan terus transaksimu dan raih keuntungan berlipat di setiap level member LARASA.</p>
+                </div>
+
+                <div class="endru_loyalty_tiers_grid">
+                    <!-- Silver Tier -->
+                    <div class="endru_loyalty_tier_card endru_tier_silver">
+                        <span class="endru_loyalty_tier_badge">Tier Silver</span>
+                        <h3 class="endru_loyalty_tier_name">Silver Member</h3>
+                        <div class="endru_loyalty_tier_req">Gratis saat pendaftaran pertama</div>
+                        <ul class="endru_loyalty_tier_features">
+                            <li class="endru_loyalty_tier_feature"><span class="endru_loyalty_tier_check">✓</span> Welcome voucher diskon 15%</li>
+                            <li class="endru_loyalty_tier_feature"><span class="endru_loyalty_tier_check">✓</span> Kumpulkan 1 poin setiap Rp 10.000</li>
+                            <li class="endru_loyalty_tier_feature"><span class="endru_loyalty_tier_check">✓</span> Akses newsletter promo mingguan</li>
+                        </ul>
+                    </div>
+
+                    <!-- Gold Tier -->
+                    <div class="endru_loyalty_tier_card endru_tier_gold">
+                        <span class="endru_loyalty_tier_badge">Tier Gold</span>
+                        <h3 class="endru_loyalty_tier_name">Gold Member</h3>
+                        <div class="endru_loyalty_tier_req">Akumulasi transaksi 20 cangkir / bulan</div>
+                        <ul class="endru_loyalty_tier_features">
+                            <li class="endru_loyalty_tier_feature"><span class="endru_loyalty_tier_check">✓</span> <strong>Cashback 5%</strong> di setiap transaksi</li>
+                            <li class="endru_loyalty_tier_feature"><span class="endru_loyalty_tier_check">✓</span> <strong>Voucher Ulang Tahun</strong> gratis 1 cup</li>
+                            <li class="endru_loyalty_tier_feature"><span class="endru_loyalty_tier_check">✓</span> Antrean prioritas saat nobar &amp; event</li>
+                        </ul>
+                    </div>
+
+                    <!-- Black Tier -->
+                    <div class="endru_loyalty_tier_card endru_tier_black">
+                        <span class="endru_loyalty_tier_badge">Tier Black VIP</span>
+                        <h3 class="endru_loyalty_tier_name">Black Member</h3>
+                        <div class="endru_loyalty_tier_req">Akumulasi transaksi 50 cangkir / bulan</div>
+                        <ul class="endru_loyalty_tier_features">
+                            <li class="endru_loyalty_tier_feature"><span class="endru_loyalty_tier_check">✓</span> <strong>Cashback hingga 10%</strong> transaksi</li>
+                            <li class="endru_loyalty_tier_feature"><span class="endru_loyalty_tier_check">✓</span> <strong>Coba Gratis Menu Baru</strong> sebelum rilis</li>
+                            <li class="endru_loyalty_tier_feature"><span class="endru_loyalty_tier_check">✓</span> Hadiah ulang tahun eksklusif + merchandise</li>
+                            <li class="endru_loyalty_tier_feature"><span class="endru_loyalty_tier_check">✓</span> Undangan eksklusif cupping session</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Form Registrasi Gabung Member Gratis -->
+        <section id="endru_loyalty_register" class="endru_loyalty_register_section">
+            <div class="endru_container">
+                <div class="endru_loyalty_register_card">
+                    <h2 class="endru_loyalty_register_title">Daftar LARASA VIP Gratis</h2>
+                    <p class="endru_loyalty_register_subtitle">Cukup lengkapi data di bawah ini untuk langsung aktifkan kartu digitalmu.</p>
+
+                    <div id="endru_loyalty_alert" class="endru_loyalty_success_msg">
+                        🎉 <strong>Selamat!</strong> Pendaftaran berhasil. Kartu digital LARASA VIP Anda telah aktif dan siap digunakan di kasir.
+                    </div>
+
+                    <form id="endru_loyalty_form" onsubmit="handleLoyaltySubmit(event)">
+                        <div class="endru_loyalty_form_grid">
+                            <div class="endru_loyalty_field">
+                                <label class="endru_loyalty_label" for="endru_loyalty_name">Nama Lengkap *</label>
+                                <input class="endru_loyalty_input" id="endru_loyalty_name" type="text" placeholder="Masukkan nama lengkap" required>
+                            </div>
+                            <div class="endru_loyalty_field">
+                                <label class="endru_loyalty_label" for="endru_loyalty_phone">Nomor WhatsApp *</label>
+                                <input class="endru_loyalty_input" id="endru_loyalty_phone" type="tel" placeholder="08xxxxxxxxxx" required>
+                            </div>
+                            <div class="endru_loyalty_field">
+                                <label class="endru_loyalty_label" for="endru_loyalty_email">Email Aktif *</label>
+                                <input class="endru_loyalty_input" id="endru_loyalty_email" type="email" placeholder="nama@email.com" required>
+                            </div>
+                            <div class="endru_loyalty_field">
+                                <label class="endru_loyalty_label" for="endru_loyalty_bday">Tanggal Lahir (Untuk Hadiah Ultah)</label>
+                                <input class="endru_loyalty_input" id="endru_loyalty_bday" type="date">
+                            </div>
+                            <div class="endru_form_full">
+                                <button type="submit" class="endru_loyalty_submit_btn">
+                                    Aktifkan Keanggotaan Saya Sekarang
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- BEGIN: Footer (#endru_footer) -->
+    <footer id="endru_footer">
+        <div class="endru_container endru_footer_inner">
+            <div>
+                <span class="endru_footer_brand">LARASA Coffee</span>
+                <span>© 2026 Hak Cipta Dilindungi — Dibuat oleh Endru.</span>
+            </div>
+            <div class="endru_footer_links">
+                <a href="index.html#endru_hero" class="endru_footer_link">Beranda</a>
+                <a href="ourstory.html" class="endru_footer_link">Our Story</a>
+                <a href="berita.html" class="endru_footer_link">Berita</a>
+                <a href="menu.html" class="endru_footer_link">Menu</a>
+                <a href="shop.html" class="endru_footer_link">Shop</a>
+                <a href="galeri.html" class="endru_footer_link">Galeri</a>
+                <a href="loyalty.html" class="endru_footer_link">Loyalty</a>
+                <a href="index.html#endru_contact" class="endru_footer_link">Kontak</a>
+            </div>
+        </div>
+    </footer>
+    <!-- END: Footer -->
+
+    <!-- Interactive JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        function handleLoyaltySubmit(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('endru_loyalty_alert');
+            const form = document.getElementById('endru_loyalty_form');
+            if (alertBox) {
+                alertBox.style.display = 'block';
+                form.reset();
+                alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    </script>
+</body>
+</html>

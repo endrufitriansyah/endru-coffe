@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Our Story — LARASA Coffee</title>
+    <!-- Google Fonts: Plus Jakarta Sans, Inter, Great Vibes & Newsreader -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS (Wajib kombinasi nama endru_) -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ==========================================================================
+           Halaman Our Story (Prefix: endru_story_*)
+           ========================================================================== */
+
+        /* 1. Hero Section: Text di Kiri, Foto di Kanan dengan Efek Fade */
+        .endru_story_hero_section {
+            background-color: var(--color-soft-white);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+        .endru_story_hero_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            min-height: 520px;
+            align-items: center;
+        }
+        @media (min-width: 900px) {
+            .endru_story_hero_grid {
+                grid-template-columns: 1.05fr 1fr;
+                min-height: 580px;
+            }
+        }
+        .endru_story_hero_content {
+            padding: 80px 24px 70px 0;
+            z-index: 3;
+            max-width: 620px;
+        }
+        @media (max-width: 899px) {
+            .endru_story_hero_content {
+                padding: 60px 0 40px;
+            }
+        }
+        .endru_story_kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--color-espresso);
+            margin-bottom: 22px;
+            letter-spacing: -0.01em;
+        }
+        .endru_story_kicker::before {
+            content: '';
+            display: inline-block;
+            width: 32px;
+            height: 2.5px;
+            background-color: var(--color-coffee-brown);
+            border-radius: 2px;
+        }
+        .endru_story_hero_title {
+            font-family: 'Newsreader', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--color-espresso);
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        @media (min-width: 768px) {
+            .endru_story_hero_title {
+                font-size: 4rem;
+            }
+        }
+        .endru_story_hero_desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.15rem;
+            line-height: 1.75;
+            color: var(--color-text-secondary);
+            font-weight: 400;
+        }
+
+        /* Foto di Kanan dengan Gradient Fade Halus ke Kiri */
+        .endru_story_hero_img_wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            overflow: hidden;
+            display: flex;
+            align-items: stretch;
+        }
+        @media (min-width: 900px) {
+            .endru_story_hero_img_wrap {
+                min-height: 580px;
+            }
+        }
+        .endru_story_hero_photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        /* Efek Gradient Fade ke Kiri agar membaur ke background teks */
+        @media (min-width: 900px) {
+            .endru_story_hero_img_wrap::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    to right,
+                    var(--color-soft-white) 0%,
+                    rgba(250, 249, 246, 0.85) 15%,
+                    rgba(250, 249, 246, 0.4) 35%,
+                    transparent 60%
+                );
+                z-index: 2;
+                pointer-events: none;
+            }
+        }
+        @media (max-width: 899px) {
+            .endru_story_hero_img_wrap {
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow-soft);
+                margin-bottom: 40px;
+                min-height: 320px;
+                max-height: 400px;
+            }
+        }
+
+        /* 2. Editorial 2-Column Sections (About Products & Our Story) */
+        .endru_story_editorial_section {
+            padding: 100px 0;
+            background-color: var(--color-soft-white);
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+        .endru_story_editorial_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 36px;
+            align-items: start;
+        }
+        @media (min-width: 860px) {
+            .endru_story_editorial_grid {
+                grid-template-columns: 1fr 1.35fr;
+                gap: 70px;
+            }
+        }
+        .endru_story_col_left {
+            display: flex;
+            flex-direction: column;
+        }
+        .endru_story_section_title {
+            font-family: 'Newsreader', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--color-espresso);
+            line-height: 1.18;
+            letter-spacing: -0.02em;
+        }
+        @media (min-width: 768px) {
+            .endru_story_section_title {
+                font-size: 3.25rem;
+            }
+        }
+        .endru_story_col_right {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding-top: 8px;
+        }
+        .endru_story_col_right p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+        .endru_story_col_right p strong {
+            color: var(--color-espresso);
+            font-weight: 600;
+        }
+
+        /* 3. Milestones & Values Cards Section */
+        .endru_story_values_section {
+            padding: 90px 0 110px;
+            background-color: var(--color-warm-beige);
+        }
+        .endru_story_values_header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 50px;
+        }
+        .endru_story_values_title {
+            font-family: 'Newsreader', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--color-espresso);
+            margin-bottom: 14px;
+        }
+        .endru_story_values_title em {
+            font-style: italic;
+            color: var(--color-coffee-brown);
+        }
+        .endru_story_values_desc {
+            font-size: 1.05rem;
+            color: var(--color-text-secondary);
+            line-height: 1.65;
+        }
+        .endru_story_values_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+        @media (min-width: 768px) {
+            .endru_story_values_grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .endru_story_value_card {
+            background-color: var(--color-surface-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            text-align: left;
+            box-shadow: var(--shadow-soft);
+            transition: box-shadow 250ms ease, border-color 250ms ease;
+        }
+        .endru_story_value_card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-coffee-brown);
+        }
+        .endru_story_value_badge {
+            display: inline-block;
+            font-family: 'Newsreader', serif;
+            font-style: italic;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-coffee-brown);
+            margin-bottom: 14px;
+        }
+        .endru_story_value_name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-espresso);
+            margin-bottom: 10px;
+        }
+        .endru_story_value_detail {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.65;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- BEGIN: MainHeader (#endru_header) -->
+    <header id="endru_header" data-purpose="navigation-header">
+        <div class="endru_container endru_header_inner">
+            <!-- Brand Logo (Left) -->
+            <a aria-label="Beranda LARASA" class="endru_brand_logo" data-purpose="brand-logo" href="index.html">
+                <img class="endru_logo_image" src="assets/images/logo.png" alt="LARASA Coffee Logo">
+            </a>
+
+            <!-- Mobile Hamburger Toggle Button -->
+            <button id="endru_mobile_toggle" class="endru_mobile_toggle" aria-label="Buka Menu Navigasi">
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+            </button>
+
+            <!-- Center Navigation Links -->
+            <nav aria-label="Main Navigation" id="endru_nav_links" class="endru_nav_links">
+                <a class="endru_nav_link" href="index.html">Beranda</a>
+                <a class="endru_nav_link endru_nav_link_active" href="ourstory.html">Our Story</a>
+                <a class="endru_nav_link" href="berita.html">Berita</a>
+                <a class="endru_nav_link" href="menu.html">Menu</a>
+                <a class="endru_nav_link" href="shop.html">Shop</a>
+                <a class="endru_nav_link" href="galeri.html">Galeri</a>
+                <a class="endru_nav_link" href="loyalty.html">Loyalty</a>
+                <a class="endru_nav_link" href="index.html#endru_contact">Kontak</a>
+            </nav>
+        </div>
+    </header>
+    <!-- END: MainHeader -->
+
+    <main>
+        <!-- 1. Hero Banner: Teks di Kiri, Foto di Kanan dengan Gradient Fade -->
+        <section class="endru_story_hero_section">
+            <div class="endru_container">
+                <div class="endru_story_hero_grid">
+                    <!-- Teks di Kiri -->
+                    <div class="endru_story_hero_content">
+                        <span class="endru_story_kicker">About LARASA</span>
+                        <h1 class="endru_story_hero_title">Cerita Kami</h1>
+                        <p class="endru_story_hero_desc">
+                            Mari berkenalan dengan tim kami mulai dari kedai hangat di Tasikmalaya, lingkungan tempat kami bertumbuh, dan orang-orang yang berdedikasi menyeduh cangkir terbaik bersama kami!
+                        </p>
+                    </div>
+
+                    <!-- Foto di Kanan -->
+                    <div class="endru_story_hero_img_wrap">
+                        <img class="endru_story_hero_photo" 
+                             src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Bar dan Barista LARASA Coffee">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Section: About our Products (Tersertifikasi Halal) -->
+        <section class="endru_story_editorial_section">
+            <div class="endru_container">
+                <div class="endru_story_editorial_grid">
+                    <!-- Kolom Kiri -->
+                    <div class="endru_story_col_left">
+                        <span class="endru_story_kicker">About our Products</span>
+                        <h2 class="endru_story_section_title">Tersertifikasi<br>Halal</h2>
+                    </div>
+
+                    <!-- Kolom Kanan -->
+                    <div class="endru_story_col_right">
+                        <p>
+                            <strong>LARASA Coffee</strong> tersertifikasi Halal Grade A oleh LPPOM MUI dengan nomor <strong>LPPOM-00160233461223</strong>. Kami menjunjung tinggi standar kebersihan, keamanan pangan, dan kehalalan dalam pembuatan serta penyajian produk kopi maupun pastry dengan menggunakan 100% bahan baku Halal berkualitas terbaik.
+                        </p>
+                        <p>
+                            Setiap bahan baku — mulai dari biji kopi arabika pilihan dari perkebunan nusantara, susu segar peternakan lokal, hingga sirup perasa alami — melalui proses kurasi yang ketat dan transparan agar setiap tegukan memberikan rasa aman, nyaman, dan nikmat bagi seluruh penikmat kopi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Section: Our Story (Grind The Essentials) -->
+        <section class="endru_story_editorial_section">
+            <div class="endru_container">
+                <div class="endru_story_editorial_grid">
+                    <!-- Kolom Kiri -->
+                    <div class="endru_story_col_left">
+                        <span class="endru_story_kicker">Our Story</span>
+                        <h2 class="endru_story_section_title">Grind The<br>Essentials</h2>
+                    </div>
+
+                    <!-- Kolom Kanan -->
+                    <div class="endru_story_col_right">
+                        <p>
+                            Di dunia yang serba cepat, mudah sekali kita kehilangan fokus terhadap apa yang sebenarnya penting. LARASA menyediakan tempat bernaung, di mana kamu bisa beristirahat sejenak dan menikmati secangkir kopi berkualitas tinggi. Filosofi ini juga terlihat jelas dalam tagline dan komitmen kami.
+                        </p>
+                        <p>
+                            Dengan menggunakan kata <strong>"Grind"</strong> yang memiliki dua arti: <em>'Grind'</em> sebagai usaha keras dan ketekunan yang dilakukan tiap hari oleh semua orang, dan <em>'Grind'</em> yang merupakan langkah penting dalam proses penggilingan dan pembuatan kopi, LARASA ingin menginspirasi orang untuk menyadari hal penting dalam kehidupan di tengah-tengah kesibukan mereka melalui tiap cangkir kopi yang kami sajikan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Section: Tiga Pilar & Nilai Tambah LARASA -->
+        <section class="endru_story_values_section">
+            <div class="endru_container">
+                <div class="endru_story_values_header">
+                    <h2 class="endru_story_values_title">Tiga Nilai di Balik <em>Setiap Rasa</em></h2>
+                    <p class="endru_story_values_desc">
+                        Fondasi utama yang menuntun kami mulai dari pemilihan bibit hingga secangkir kopi tersaji di meja Anda.
+                    </p>
+                </div>
+
+                <div class="endru_story_values_grid">
+                    <div class="endru_story_value_card">
+                        <div class="endru_story_value_badge">01</div>
+                        <h3 class="endru_story_value_name">100% Petani Lokal</h3>
+                        <p class="endru_story_value_detail">
+                            Kemitraan langsung dan adil dengan petani kopi di Jawa Barat, Sumatera, dan Flores demi menjaga mutu panen serta kesejahteraan komunitas tani lokal.
+                        </p>
+                    </div>
+
+                    <div class="endru_story_value_card">
+                        <div class="endru_story_value_badge">02</div>
+                        <h3 class="endru_story_value_name">Small-Batch Roasting</h3>
+                        <p class="endru_story_value_detail">
+                            Setiap biji disangrai dalam kapasitas terukur di micro-roastery kami di Tasikmalaya untuk mempertahankan aroma buah, bunga, dan manis karamel alaminya.
+                        </p>
+                    </div>
+
+                    <div class="endru_story_value_card">
+                        <div class="endru_story_value_badge">03</div>
+                        <h3 class="endru_story_value_name">Ruang yang Menghubungkan</h3>
+                        <p class="endru_story_value_detail">
+                            Kedai dirancang sebagai suaka tenang dan hangat — tempat yang ramah untuk berdialog, bekerja dengan nyaman, atau sekadar melepas lelah di sore hari.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- BEGIN: Footer (#endru_footer) -->
+    <footer id="endru_footer">
+        <div class="endru_container endru_footer_inner">
+            <div>
+                <span class="endru_footer_brand">LARASA Coffee</span>
+                <span>© 2026 Hak Cipta Dilindungi — Dibuat oleh Endru.</span>
+            </div>
+            <div class="endru_footer_links">
+                <a href="index.html#endru_hero" class="endru_footer_link">Beranda</a>
+                <a href="ourstory.html" class="endru_footer_link">Our Story</a>
+                <a href="berita.html" class="endru_footer_link">Berita</a>
+                <a href="menu.html" class="endru_footer_link">Menu</a>
+                <a href="shop.html" class="endru_footer_link">Shop</a>
+                <a href="galeri.html" class="endru_footer_link">Galeri</a>
+                <a href="loyalty.html" class="endru_footer_link">Loyalty</a>
+                <a href="index.html#endru_contact" class="endru_footer_link">Kontak</a>
+            </div>
+        </div>
+    </footer>
+    <!-- END: Footer -->
+
+    <script src="js/script.js"></script>
+</body>
+</html>

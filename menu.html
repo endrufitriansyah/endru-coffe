@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Daftar Menu Lengkap - LARASA Coffee</title>
+    <!-- Google Fonts: Plus Jakarta Sans, Inter, Great Vibes & Newsreader -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS (Wajib kombinasi nama endru_) -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Specific Menu Page Styles (Prefix: endru_menu_*) */
+        .endru_menu_hero {
+            background-color: var(--color-warm-beige);
+            padding: 95px 0 65px;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+        .endru_menu_page_title {
+            font-family: 'Newsreader', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--color-espresso);
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+        .endru_menu_page_desc {
+            font-size: 1.15rem;
+            color: var(--color-text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .endru_menu_catalog_section {
+            padding: 80px 0 120px;
+            background-color: var(--color-soft-white);
+        }
+        .endru_menu_category_header {
+            margin-bottom: 36px;
+            border-bottom: 2px solid var(--color-border-subtle);
+            padding-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .endru_menu_category_title {
+            font-family: 'Newsreader', serif;
+            font-size: 2.25rem;
+            font-weight: 600;
+            color: var(--color-espresso);
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+        }
+        .endru_menu_category_tagline {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        /* 1. Menu Terbaik Visual Showcase Grid (Sesuai Section Menu Terbaik di Beranda) */
+        .endru_menu_best_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            margin-bottom: 70px;
+        }
+        @media (min-width: 640px) {
+            .endru_menu_best_grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .endru_menu_best_grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .endru_menu_best_card {
+            background-color: var(--color-surface-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 28px 22px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+            position: relative;
+        }
+        .endru_menu_best_card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-coffee-brown);
+        }
+        .endru_menu_best_badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background-color: var(--color-coffee-brown);
+            color: var(--color-text-inverse);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+        }
+        .endru_menu_best_cup_wrap {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .endru_menu_best_img {
+            max-height: 210px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 14px 18px rgba(48, 40, 32, 0.14));
+            transition: transform 300ms ease;
+        }
+        .endru_menu_best_card:hover .endru_menu_best_img {
+            transform: scale(1.06);
+        }
+        .endru_menu_best_info {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+        .endru_menu_best_name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--color-espresso);
+            margin-bottom: 6px;
+        }
+        .endru_menu_best_price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--color-coffee-brown);
+            margin-bottom: 10px;
+        }
+        .endru_menu_best_desc {
+            font-size: 0.9rem;
+            line-height: 1.55;
+            color: var(--color-text-secondary);
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+        .endru_menu_best_btn {
+            display: inline-block;
+            width: 100%;
+            background-color: var(--color-warm-beige);
+            color: var(--color-espresso);
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            border: 1px solid var(--color-border-subtle);
+            transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+        }
+        .endru_menu_best_btn:hover {
+            background-color: var(--color-coffee-brown);
+            color: var(--color-text-inverse);
+            border-color: var(--color-coffee-brown);
+        }
+
+        /* 2. Authentic Coffee Shop Menu Board (Prefix: endru_board_*) */
+        .endru_board_container {
+            background-color: var(--color-surface-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 44px 38px 48px;
+            box-shadow: var(--shadow-soft);
+            margin-top: 20px;
+        }
+        @media (max-width: 640px) {
+            .endru_board_container {
+                padding: 28px 18px;
+            }
+        }
+        .endru_board_header {
+            text-align: center;
+            margin-bottom: 44px;
+            padding-bottom: 18px;
+            border-bottom: 2px solid var(--color-border-subtle);
+        }
+        .endru_board_main_title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--color-espresso);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .endru_board_notice {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+        .endru_board_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        @media (min-width: 920px) {
+            .endru_board_grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 48px 60px;
+            }
+        }
+        .endru_board_section {
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+        .endru_board_category {
+            display: flex;
+            flex-direction: column;
+        }
+        .endru_board_cat_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--color-coffee-brown);
+            padding-bottom: 6px;
+        }
+        .endru_board_cat_title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--color-coffee-brown);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .endru_board_cat_content_with_img {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            align-items: start;
+        }
+        @media (min-width: 520px) {
+            .endru_board_cat_content_with_img {
+                grid-template-columns: 1fr 115px;
+            }
+        }
+        .endru_board_item_list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .endru_board_item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed rgba(152, 118, 91, 0.28);
+        }
+        .endru_board_item_name {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-espresso);
+            padding-right: 12px;
+        }
+        .endru_board_item_price {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-coffee-brown);
+            white-space: nowrap;
+        }
+        .endru_board_cat_img_wrap {
+            width: 100%;
+            height: 105px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--color-border-subtle);
+            box-shadow: var(--shadow-subtle);
+            background-color: var(--color-warm-beige);
+        }
+        @media (max-width: 519px) {
+            .endru_board_cat_img_wrap {
+                height: 140px;
+                order: -1;
+                margin-bottom: 10px;
+            }
+        }
+        .endru_board_cat_img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- BEGIN: MainHeader (#endru_header) -->
+    <header id="endru_header" data-purpose="navigation-header">
+        <div class="endru_container endru_header_inner">
+            <!-- Brand Logo (Left) -->
+            <a aria-label="Beranda LARASA" class="endru_brand_logo" data-purpose="brand-logo" href="index.html">
+                <img class="endru_logo_image" src="assets/images/logo.png" alt="LARASA Coffee Logo">
+            </a>
+
+            <!-- Mobile Hamburger Toggle Button -->
+            <button id="endru_mobile_toggle" class="endru_mobile_toggle" aria-label="Buka Menu Navigasi">
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+            </button>
+
+            <!-- Center Navigation Links -->
+            <nav aria-label="Main Navigation" id="endru_nav_links" class="endru_nav_links">
+                <a class="endru_nav_link" href="index.html">Beranda</a>
+                <a class="endru_nav_link" href="ourstory.html">Our Story</a>
+                <a class="endru_nav_link" href="berita.html">Berita</a>
+                <a class="endru_nav_link endru_nav_link_active" href="menu.html">Menu</a>
+                <a class="endru_nav_link" href="shop.html">Shop</a>
+                <a class="endru_nav_link" href="galeri.html">Galeri</a>
+                <a class="endru_nav_link" href="loyalty.html">Loyalty</a>
+                <a class="endru_nav_link" href="index.html#endru_contact">Kontak</a>
+            </nav>
+        </div>
+    </header>
+    <!-- END: MainHeader -->
+
+    <main>
+        <!-- Page Banner -->
+        <section class="endru_menu_hero">
+            <div class="endru_container">
+                <h1 class="endru_menu_page_title">KATALOG &amp; MENU KEDAI</h1>
+                <p class="endru_menu_page_desc">
+                    Pilihan racikan kopi artisan, minuman non-kopi segar, dan hidangan pendamping yang diracik khusus untuk menemani setiap momen santaimu di LARASA.
+                </p>
+            </div>
+        </section>
+
+        <!-- Menu Catalog -->
+        <section class="endru_menu_catalog_section">
+            <div class="endru_container">
+
+                <!-- Kategori 1: MENU TERBAIK (Sesuaian dengan Section Menu Terbaik di Beranda) -->
+                <div class="endru_menu_category_header">
+                    <h2 class="endru_menu_category_title">Menu Terbaik</h2>
+                    <span class="endru_menu_category_tagline">4 Minuman Favorit &amp; Signature Terlaris LARASA</span>
+                </div>
+
+                <div class="endru_menu_best_grid">
+                    <!-- Menu Terbaik 1: Kopi Susu -->
+                    <div class="endru_menu_best_card">
+                        <div class="endru_menu_best_cup_wrap">
+                            <img src="assets/images/kopi_susu.png" alt="Kopi Susu" class="endru_menu_best_img">
+                        </div>
+                        <div class="endru_menu_best_info">
+                            <div>
+                                <h3 class="endru_menu_best_name">Kopi Susu</h3>
+                                <div class="endru_menu_best_price">Rp 20.000</div>
+                                <p class="endru_menu_best_desc">
+                                     Perpaduan espresso mantap dengan racikan susu creamy dan manis gurih gula aren murni yang pas di lidah.
+                                </p>
+                            </div>
+                            <a href="index.html#endru_contact" class="endru_menu_best_btn">Pesan Sekarang</a>
+                        </div>
+                    </div>
+
+                    <!-- Menu Terbaik 2: Honey Berry Shot -->
+                    <div class="endru_menu_best_card">
+                        <div class="endru_menu_best_cup_wrap">
+                            <img src="assets/images/berry.png" alt="Honey Berry Shot" class="endru_menu_best_img">
+                        </div>
+                        <div class="endru_menu_best_info">
+                            <div>
+                                <h3 class="endru_menu_best_name">Honey Berry Shot</h3>
+                                <div class="endru_menu_best_price">Rp 26.000</div>
+                                <p class="endru_menu_best_desc">
+                                    Kesegaran buah beri liar berpadu madu hutan alami dan sentuhan espresso ringan yang menyegarkan dahaga.
+                                </p>
+                            </div>
+                            <a href="index.html#endru_contact" class="endru_menu_best_btn">Pesan Sekarang</a>
+                        </div>
+                    </div>
+
+                    <!-- Menu Terbaik 3: Matcha Latte -->
+                    <div class="endru_menu_best_card">
+                        <div class="endru_menu_best_cup_wrap">
+                            <img src="assets/images/matcha.png" alt="Matcha Latte" class="endru_menu_best_img">
+                        </div>
+                        <div class="endru_menu_best_info">
+                            <div>
+                                <h3 class="endru_menu_best_name">Matcha Latte</h3>
+                                <div class="endru_menu_best_price">Rp 28.000</div>
+                                <p class="endru_menu_best_desc">
+                                    Bubuk matcha premium Uji Jepang yang otentik, diseduh dengan susu segar dan tekstur microfoam lembut.
+                                </p>
+                            </div>
+                            <a href="index.html#endru_contact" class="endru_menu_best_btn">Pesan Sekarang</a>
+                        </div>
+                    </div>
+
+                    <!-- Menu Terbaik 4: Americano -->
+                    <div class="endru_menu_best_card">
+                        <div class="endru_menu_best_cup_wrap">
+                            <img src="assets/images/americano.png" alt="Americano" class="endru_menu_best_img">
+                        </div>
+                        <div class="endru_menu_best_info">
+                            <div>
+                                <h3 class="endru_menu_best_name">Americano</h3>
+                                <div class="endru_menu_best_price">Rp 22.000</div>
+                                <p class="endru_menu_best_desc">
+                                    Ekstraksi double espresso murni dari biji arabika Jawa Barat dengan aroma bersih dan aftertaste manis alami.
+                                </p>
+                            </div>
+                            <a href="index.html#endru_contact" class="endru_menu_best_btn">Pesan Sekarang</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Papan Menu Lengkap Kedai (Sesuai Referensi Board Menu Kedai Kopi) -->
+                <div class="endru_board_container">
+                    <div class="endru_board_header">
+                        <h2 class="endru_board_main_title">Daftar Menu Kedai LARASA</h2>
+                        <span class="endru_board_notice">*Harga dalam ribuan rupiah (K) &middot; Tersedia pilihan panas atau dingin</span>
+                    </div>
+
+                    <div class="endru_board_grid">
+                        <!-- KOLOM KIRI: SIGNATURE, ESPRESSO BASED, NON COFFEE, MANUAL BREW -->
+                        <div class="endru_board_section">
+                            
+                            <!-- 1. SIGNATURE -->
+                            <div class="endru_board_category">
+                                <div class="endru_board_cat_header">
+                                    <h3 class="endru_board_cat_title">SIGNATURE</h3>
+                                </div>
+                                <div class="endru_board_cat_content_with_img">
+                                    <div class="endru_board_item_list">
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Kopi LARASA</span>
+                                            <span class="endru_board_item_price">20</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Kopi BUTTERSCOTCH</span>
+                                            <span class="endru_board_item_price">20</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Kopi LEMON</span>
+                                            <span class="endru_board_item_price">20</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">HONEY BERRY Shot</span>
+                                            <span class="endru_board_item_price">22</span>
+                                        </div>
+                                    </div>
+                                    <div class="endru_board_cat_img_wrap">
+                                        <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=400&q=80" alt="Signature LARASA" class="endru_board_cat_img">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. ESPRESSO BASED -->
+                            <div class="endru_board_category">
+                                <div class="endru_board_cat_header">
+                                    <h3 class="endru_board_cat_title">ESPRESSO BASED</h3>
+                                </div>
+                                <div class="endru_board_cat_content_with_img">
+                                    <div class="endru_board_item_list">
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">AMERICANO</span>
+                                            <span class="endru_board_item_price">16</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">AFFOGATO</span>
+                                            <span class="endru_board_item_price">18</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Cappuccino / LATTE</span>
+                                            <span class="endru_board_item_price">18</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Kopi SUSU AREN</span>
+                                            <span class="endru_board_item_price">20</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Kopi SALTED CARAMEL</span>
+                                            <span class="endru_board_item_price">20</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Kopi CREAMY</span>
+                                            <span class="endru_board_item_price">20</span>
+                                        </div>
+                                    </div>
+                                    <div class="endru_board_cat_img_wrap">
+                                        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=400&q=80" alt="Espresso Based" class="endru_board_cat_img">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. NON COFFEE -->
+                            <div class="endru_board_category">
+                                <div class="endru_board_cat_header">
+                                    <h3 class="endru_board_cat_title">NON COFFEE</h3>
+                                </div>
+                                <div class="endru_board_cat_content_with_img">
+                                    <div class="endru_board_item_list">
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">CHOCOLATE</span>
+                                            <span class="endru_board_item_price">18</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">STRAWBERRY Milkshake</span>
+                                            <span class="endru_board_item_price">18</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">MATCHA Latte</span>
+                                            <span class="endru_board_item_price">22</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">BERRY Matcha</span>
+                                            <span class="endru_board_item_price">22</span>
+                                        </div>
+                                    </div>
+                                    <div class="endru_board_cat_img_wrap">
+                                        <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=400&q=80" alt="Non Coffee" class="endru_board_cat_img">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 4. MANUAL BREW -->
+                            <div class="endru_board_category">
+                                <div class="endru_board_cat_header">
+                                    <h3 class="endru_board_cat_title">MANUAL BREW</h3>
+                                </div>
+                                <div class="endru_board_cat_content_with_img">
+                                    <div class="endru_board_item_list">
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Kopi TUBRUK</span>
+                                            <span class="endru_board_item_price">12</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">VIETNAM Drip</span>
+                                            <span class="endru_board_item_price">15</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">V60 / Japanese</span>
+                                            <span class="endru_board_item_price">22</span>
+                                        </div>
+                                    </div>
+                                    <div class="endru_board_cat_img_wrap">
+                                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80" alt="Manual Brew" class="endru_board_cat_img">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- KOLOM KANAN: CROFFLE, MAKANAN BERAT, PAKET HEMAT, EXTRA -->
+                        <div class="endru_board_section">
+
+                            <!-- 5. CROFFLE -->
+                            <div class="endru_board_category">
+                                <div class="endru_board_cat_header">
+                                    <h3 class="endru_board_cat_title">CROFFLE</h3>
+                                </div>
+                                <div class="endru_board_cat_content_with_img">
+                                    <div class="endru_board_item_list">
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">3 Mini Croffle</span>
+                                            <span class="endru_board_item_price">18</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">5 Mini Croffle</span>
+                                            <span class="endru_board_item_price">27</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">DUO Croffle</span>
+                                            <span class="endru_board_item_price">18</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">TRIO Croffle</span>
+                                            <span class="endru_board_item_price">27</span>
+                                        </div>
+                                    </div>
+                                    <div class="endru_board_cat_img_wrap">
+                                        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=80" alt="Croffle Pastry" class="endru_board_cat_img">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 6. MAKANAN BERAT -->
+                            <div class="endru_board_category">
+                                <div class="endru_board_cat_header">
+                                    <h3 class="endru_board_cat_title">MAKANAN BERAT</h3>
+                                </div>
+                                <div class="endru_board_cat_content_with_img">
+                                    <div class="endru_board_item_list">
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">DIMSUM Ayam</span>
+                                            <span class="endru_board_item_price">18</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Mie Rica</span>
+                                            <span class="endru_board_item_price">18</span>
+                                        </div>
+                                    </div>
+                                    <div class="endru_board_cat_img_wrap">
+                                        <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=400&q=80" alt="Dimsum dan Mie" class="endru_board_cat_img">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 7. PAKET HEMAT -->
+                            <div class="endru_board_category">
+                                <div class="endru_board_cat_header">
+                                    <h3 class="endru_board_cat_title">PAKET HEMAT</h3>
+                                </div>
+                                <div class="endru_board_cat_content_with_img">
+                                    <div class="endru_board_item_list">
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">BUNDLING Single</span>
+                                            <span class="endru_board_item_price">30</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">SERASI</span>
+                                            <span class="endru_board_item_price">35</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">KODIM</span>
+                                            <span class="endru_board_item_price">35</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Kopi Susu 1 Liter</span>
+                                            <span class="endru_board_item_price">90</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Espresso 1 Liter</span>
+                                            <span class="endru_board_item_price">170</span>
+                                        </div>
+                                    </div>
+                                    <div class="endru_board_cat_img_wrap">
+                                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=400&q=80" alt="Kopi Botol 1 Liter" class="endru_board_cat_img">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 8. EXTRA -->
+                            <div class="endru_board_category">
+                                <div class="endru_board_cat_header">
+                                    <h3 class="endru_board_cat_title">EXTRA</h3>
+                                </div>
+                                <div class="endru_board_cat_content_with_img">
+                                    <div class="endru_board_item_list">
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">1 Shot ESPRESSO</span>
+                                            <span class="endru_board_item_price">10</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Vanilla ICE CREAM</span>
+                                            <span class="endru_board_item_price">8</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">CHEESE Cream</span>
+                                            <span class="endru_board_item_price">8</span>
+                                        </div>
+                                        <div class="endru_board_item">
+                                            <span class="endru_board_item_name">Dipping Sauce</span>
+                                            <span class="endru_board_item_price">4</span>
+                                        </div>
+                                    </div>
+                                    <div class="endru_board_cat_img_wrap">
+                                        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400&q=80" alt="Extra Add-on" class="endru_board_cat_img">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- BEGIN: Footer (#endru_footer) -->
+    <footer id="endru_footer">
+        <div class="endru_container endru_footer_inner">
+            <div>
+                <span class="endru_footer_brand">LARASA Coffee</span>
+                <span>© 2026 Hak Cipta Dilindungi — Dibuat oleh Endru.</span>
+            </div>
+            <div class="endru_footer_links">
+                <a href="index.html#endru_hero" class="endru_footer_link">Beranda</a>
+                <a href="ourstory.html" class="endru_footer_link">Our Story</a>
+                <a href="berita.html" class="endru_footer_link">Berita</a>
+                <a href="menu.html" class="endru_footer_link">Menu</a>
+                <a href="shop.html" class="endru_footer_link">Shop</a>
+                <a href="galeri.html" class="endru_footer_link">Galeri</a>
+                <a href="loyalty.html" class="endru_footer_link">Loyalty</a>
+                <a href="index.html#endru_contact" class="endru_footer_link">Kontak</a>
+            </div>
+        </div>
+    </footer>
+    <!-- END: Footer -->
+
+    <!-- Interactive JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

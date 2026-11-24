@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>LARASA Shop — Biji Kopi &amp; Merchandise</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ==========================================================================
+           Halaman Shop (Prefix: endru_shop_*)
+           ========================================================================== */
+        .endru_shop_hero {
+            background-color: var(--color-warm-beige);
+            padding: 95px 0 65px;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+
+        .endru_shop_hero_title {
+            font-family: 'Newsreader', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--color-espresso);
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .endru_shop_hero_desc {
+            font-size: 1.15rem;
+            color: var(--color-text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Section & Category */
+        .endru_shop_section {
+            padding: 90px 0 130px;
+            background-color: var(--color-soft-white);
+        }
+
+        .endru_shop_category_header {
+            margin-bottom: 36px;
+            border-bottom: 2px solid var(--color-border-subtle);
+            padding-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .endru_shop_category_title {
+            font-family: 'Newsreader', serif;
+            font-size: 2.25rem;
+            font-weight: 600;
+            color: var(--color-espresso);
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+        }
+
+        .endru_shop_category_tagline {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        /* Product Grid */
+        .endru_shop_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            margin-bottom: 72px;
+        }
+
+        @media (min-width: 580px) {
+            .endru_shop_grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .endru_shop_grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Product Card */
+        .endru_shop_card {
+            background-color: var(--color-surface-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: box-shadow 250ms ease, border-color 250ms ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .endru_shop_card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-coffee-brown);
+        }
+
+        .endru_shop_img_wrap {
+            width: 100%;
+            aspect-ratio: 1;
+            background-color: var(--color-warm-beige);
+            position: relative;
+            overflow: hidden;
+            display: block;
+        }
+
+        .endru_shop_img_wrap {
+            width: 100%;
+            aspect-ratio: 1;
+            background-color: var(--color-warm-beige);
+            position: relative;
+            overflow: hidden;
+            display: block;
+            cursor: pointer;
+        }
+
+        .endru_shop_img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 0;
+            transition: transform 350ms ease;
+        }
+
+        .endru_shop_img_contain {
+            object-fit: contain !important;
+            background-color: #f7f5f0 !important;
+        }
+
+        .endru_shop_card:hover .endru_shop_img {
+            transform: scale(1.05);
+        }
+
+        .endru_shop_zoom_hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(43, 27, 23, 0.78);
+            color: var(--color-soft-white);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 4px 9px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 200ms ease, transform 200ms ease;
+            pointer-events: none;
+            z-index: 3;
+            letter-spacing: 0.02em;
+        }
+
+        .endru_shop_card:hover .endru_shop_zoom_hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === Lightbox Full Photo Modal === */
+        .endru_lightbox_overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(18, 12, 10, 0.88);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 250ms ease, visibility 250ms ease;
+        }
+
+        .endru_lightbox_overlay.endru_lightbox_active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .endru_lightbox_dialog {
+            position: relative;
+            max-width: 92vw;
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .endru_lightbox_close {
+            position: absolute;
+            top: -46px;
+            right: 0;
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-full);
+            background-color: var(--color-warm-beige);
+            border: 1px solid var(--color-border-subtle);
+            color: var(--color-espresso);
+            font-size: 22px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10001;
+            transition: background-color 200ms ease, color 200ms ease;
+        }
+
+        .endru_lightbox_close:hover {
+            background-color: var(--color-espresso);
+            color: var(--color-soft-white);
+        }
+
+        .endru_lightbox_img {
+            max-width: 90vw;
+            max-height: 80vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
+            display: block;
+            background-color: var(--color-surface-card);
+        }
+
+        .endru_lightbox_caption {
+            margin-top: 14px;
+            color: var(--color-soft-white);
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        .endru_shop_badge_wrap {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 2;
+        }
+
+        .endru_shop_badge {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+        }
+
+        .endru_badge_new {
+            background-color: var(--color-coffee-brown);
+            color: var(--color-text-inverse);
+        }
+
+        .endru_badge_limited {
+            background-color: var(--color-espresso);
+            color: var(--color-warm-beige);
+        }
+
+        .endru_badge_bestseller {
+            background-color: var(--color-warm-beige);
+            color: var(--color-espresso);
+            border: 1px solid var(--color-coffee-brown);
+        }
+
+        .endru_shop_body {
+            padding: 22px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .endru_shop_product_name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--color-espresso);
+            margin-bottom: 4px;
+            line-height: 1.3;
+            min-height: 2.6em;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .endru_shop_notes {
+            font-size: 0.84rem;
+            color: var(--color-coffee-brown);
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            min-height: 2.8em;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .endru_shop_desc {
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: var(--color-text-secondary);
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+
+        .endru_shop_footer_row {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px dashed var(--color-border-subtle);
+        }
+
+        .endru_shop_price_wrap {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .endru_shop_price_label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .endru_shop_price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-espresso);
+            white-space: nowrap;
+        }
+
+        .endru_shop_btn_group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .endru_shop_btn_detail {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-warm-beige);
+            color: var(--color-espresso);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 9px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border-subtle);
+            cursor: pointer;
+            transition: background-color 200ms ease, border-color 200ms ease;
+            text-decoration: none;
+        }
+
+        .endru_shop_btn_detail:hover {
+            background-color: var(--color-border-subtle);
+            border-color: var(--color-coffee-brown);
+        }
+
+        .endru_shop_btn_wa {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            background-color: var(--color-espresso);
+            color: var(--color-text-inverse);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 9px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-espresso);
+            text-decoration: none;
+            transition: background-color 200ms ease;
+            cursor: pointer;
+        }
+
+        .endru_shop_btn_wa:hover {
+            background-color: var(--color-coffee-brown);
+            border-color: var(--color-coffee-brown);
+        }
+
+        /* Merchandise placeholder icon containers */
+        .endru_merch_icon_wrap {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-warm-beige);
+            border-radius: var(--radius-md);
+        }
+
+        .endru_merch_icon_wrap svg {
+            width: 90px;
+            height: 90px;
+            opacity: 0.45;
+            color: var(--color-espresso);
+        }
+
+        /* ==========================================================================
+           Product Detail Modal
+           ========================================================================== */
+        .endru_shop_modal_overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(48, 40, 32, 0.72);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 250ms ease, visibility 250ms ease;
+        }
+
+        .endru_shop_modal_overlay.endru_modal_active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .endru_shop_modal_inner {
+            background-color: var(--color-surface-card);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-hover);
+            max-width: 720px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 680px) {
+            .endru_shop_modal_inner {
+                grid-template-columns: 1fr 1.2fr;
+            }
+        }
+
+        .endru_shop_modal_close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background-color: var(--color-warm-beige);
+            border: 1px solid var(--color-border-subtle);
+            color: var(--color-espresso);
+            font-size: 20px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 200ms ease;
+        }
+
+        .endru_shop_modal_close:hover {
+            background-color: var(--color-espresso);
+            color: var(--color-soft-white);
+        }
+
+        .endru_shop_modal_media {
+            background-color: var(--color-warm-beige);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 260px;
+        }
+
+        .endru_shop_modal_media img {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .endru_shop_modal_media svg {
+            width: 120px;
+            height: 120px;
+            opacity: 0.45;
+            color: var(--color-espresso);
+        }
+
+        .endru_shop_modal_content {
+            padding: 32px 28px 28px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .endru_shop_modal_badge_tag {
+            display: inline-block;
+            align-self: flex-start;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            background-color: var(--color-warm-beige);
+            color: var(--color-espresso);
+            border: 1px solid var(--color-coffee-brown);
+            margin-bottom: 12px;
+        }
+
+        .endru_shop_modal_title {
+            font-family: 'Newsreader', serif;
+            font-size: 1.85rem;
+            color: var(--color-espresso);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .endru_shop_modal_price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-coffee-brown);
+            margin-bottom: 12px;
+        }
+
+        .endru_shop_modal_notes {
+            font-size: 0.9rem;
+            color: var(--color-espresso);
+            font-weight: 600;
+            background-color: var(--color-warm-beige);
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+        }
+
+        .endru_shop_modal_desc {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .endru_shop_modal_cta {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .endru_shop_modal_wa_btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--color-espresso);
+            color: var(--color-text-inverse);
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 13px 22px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: background-color 200ms ease;
+            text-align: center;
+        }
+
+        .endru_shop_modal_wa_btn:hover {
+            background-color: var(--color-coffee-brown);
+        }
+
+        .endru_shop_modal_hint {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- BEGIN: MainHeader (#endru_header) -->
+    <header id="endru_header" data-purpose="navigation-header">
+        <div class="endru_container endru_header_inner">
+            <a aria-label="Beranda LARASA" class="endru_brand_logo" href="index.html">
+                <img class="endru_logo_image" src="assets/images/logo.png" alt="LARASA Coffee Logo">
+            </a>
+            <button id="endru_mobile_toggle" class="endru_mobile_toggle" aria-label="Buka Menu Navigasi">
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+            </button>
+            <nav aria-label="Main Navigation" id="endru_nav_links" class="endru_nav_links">
+                <a class="endru_nav_link" href="index.html">Beranda</a>
+                <a class="endru_nav_link" href="ourstory.html">Our Story</a>
+                <a class="endru_nav_link" href="berita.html">Berita</a>
+                <a class="endru_nav_link" href="menu.html">Menu</a>
+                <a class="endru_nav_link endru_nav_link_active" href="shop.html">Shop</a>
+                <a class="endru_nav_link" href="galeri.html">Galeri</a>
+                <a class="endru_nav_link" href="loyalty.html">Loyalty</a>
+                <a class="endru_nav_link" href="index.html#endru_contact">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="endru_shop_hero">
+            <div class="endru_container">
+                <h1 class="endru_shop_hero_title">BIJI KOPI &amp; MERCHANDISE</h1>
+                <p class="endru_shop_hero_desc">
+                    Biji kopi segar pasca-panen pilihan dan merchandise eksklusif LARASA — untuk menemanimu di mana pun
+                    kamu menyeduh.
+                </p>
+            </div>
+        </section>
+
+        <!-- Products -->
+        <section class="endru_shop_section">
+            <div class="endru_container">
+
+                <!-- Kategori 1: Biji Kopi -->
+                <div class="endru_shop_category_header">
+                    <h2 class="endru_shop_category_title">Biji Kopi Pilihan</h2>
+                </div>
+
+                <div class="endru_shop_grid">
+                    <!-- Produk Kopi 1 -->
+                    <div class="endru_shop_card" id="endru_prod_1">
+                        <div class="endru_shop_img_wrap">
+                            <img src="assets/images/Biji_Kopi_Luwak_Arabica.jpg" alt="Biji Kopi Luwak Arabica"
+                                class="endru_shop_img">
+                            <span class="endru_shop_zoom_hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                Lihat Foto
+                            </span>
+                        </div>
+                        <div class="endru_shop_body">
+                            <h3 class="endru_shop_product_name">Biji Kopi Luwak Arabica</h3>
+                            <p class="endru_shop_desc">Biji Kopi sudah disortir terbaik dari 100% biji petik merah
+                                pilihan dengan penyimpanan terstandar.</p>
+                            <div class="endru_shop_footer_row">
+                                <div class="endru_shop_price_wrap">
+                                    <span class="endru_shop_price_label">Kemasan 250g</span>
+                                    <span class="endru_shop_price">Rp 85.000</span>
+                                </div>
+                                <div class="endru_shop_btn_group">
+                                    <button class="endru_shop_btn_detail" data-title="Biji Kopi Luwak Arabica"
+                                        data-price="Rp 85.000" data-notes="Kemasan 250g · Petik Merah Pilihan"
+                                        data-desc="Biji Kopi sudah disortir yang terbaik dengan tempat penyimpanan yang bagus dan 100% dari biji petik merah pilihan berkualitas tinggi."
+                                        data-badge="Koleksi Pilihan" data-type="image"
+                                        data-media="assets/images/Biji_Kopi_Luwak_Arabica.jpg"
+                                        data-wa="Halo LARASA, saya ingin memesan Biji Kopi Luwak Arabica (Rp 85.000). Apakah stok masih tersedia?">Lihat
+                                        Detail</button>
+                                    <a class="endru_shop_btn_wa" target="_blank" rel="noopener noreferrer"
+                                        href="https://wa.me/6281234567890?text=Halo%20LARASA,%20saya%20ingin%20memesan%20Biji%20Kopi%20Luwak%20Arabica%20(Rp%2085.000).">
+                                        WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produk Kopi 2 -->
+                    <div class="endru_shop_card" id="endru_prod_2">
+                        <div class="endru_shop_img_wrap">
+                            <img src="assets/images/Biji_Kopi_Luwak_Robusta.jpg" alt="Biji Kopi Luwak Robusta"
+                                class="endru_shop_img">
+                            <span class="endru_shop_zoom_hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                Lihat Foto
+                            </span>
+                        </div>
+                        <div class="endru_shop_body">
+                            <h3 class="endru_shop_product_name">Biji Kopi Luwak Robusta</h3>
+                            <p class="endru_shop_desc">Biji Kopi sudah disortir terbaik dari 100% biji petik merah
+                                pilihan dengan aroma mantap.</p>
+                            <div class="endru_shop_footer_row">
+                                <div class="endru_shop_price_wrap">
+                                    <span class="endru_shop_price_label">Kemasan 200g</span>
+                                    <span class="endru_shop_price">Rp 120.000</span>
+                                </div>
+                                <div class="endru_shop_btn_group">
+                                    <button class="endru_shop_btn_detail" data-title="Biji Kopi Luwak Robusta"
+                                        data-price="Rp 120.000" data-notes="Kemasan 200g · Petik Merah Pilihan"
+                                        data-desc="Biji Kopi sudah disortir yang terbaik dengan tempat penyimpanan yang bagus dan 100% dari biji petik merah pilihan berkualitas tinggi."
+                                        data-badge="Koleksi Pilihan" data-type="image"
+                                        data-media="assets/images/Biji_Kopi_Luwak_Robusta.jpg"
+                                        data-wa="Halo LARASA, saya ingin memesan Biji Kopi Luwak Robusta (Rp 120.000). Apakah stok masih tersedia?">Lihat
+                                        Detail</button>
+                                    <a class="endru_shop_btn_wa" target="_blank" rel="noopener noreferrer"
+                                        href="https://wa.me/6281234567890?text=Halo%20LARASA,%20saya%20ingin%20memesan%20Biji%20Kopi%20Luwak%20Robusta%20(Rp%20120.000).">
+                                        WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produk Kopi 3 -->
+                    <div class="endru_shop_card" id="endru_prod_3">
+                        <div class="endru_shop_img_wrap">
+                            <img src="assets/images/Biji_Kopi_Lanang_Robusta_Telemung_Green.jpg"
+                                alt="Biji Kopi Lanang Robusta Telemung Green" class="endru_shop_img">
+                            <span class="endru_shop_zoom_hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                Lihat Foto
+                            </span>
+                        </div>
+                        <div class="endru_shop_body">
+                            <h3 class="endru_shop_product_name">Biji Kopi Lanang Robusta Telemung Green</h3>
+                            <p class="endru_shop_desc">Kualitas Grade A / Ekspor, Honey Process, Segar kadar air 10-13%,
+                                Fine Lanang Robusta Telemung.</p>
+                            <div class="endru_shop_footer_row">
+                                <div class="endru_shop_price_wrap">
+                                    <span class="endru_shop_price_label">Kemasan 200g</span>
+                                    <span class="endru_shop_price">Rp 110.000</span>
+                                </div>
+                                <div class="endru_shop_btn_group">
+                                    <button class="endru_shop_btn_detail"
+                                        data-title="Biji Kopi Lanang Robusta Telemung Green" data-price="Rp 110.000"
+                                        data-notes="Kemasan 200g · Grade A Ekspor"
+                                        data-desc="Kualitas: Grade A / Kualitas Ekspor. Proses: Honey Process. Kondisi: Segar, Kadar Air: 10-13%. Jenis: Fine Lanang Robusta Telemung. Varietes: Mix."
+                                        data-badge="Green Bean" data-type="image"
+                                        data-media="assets/images/Biji_Kopi_Lanang_Robusta_Telemung_Green.jpg"
+                                        data-wa="Halo LARASA, saya ingin memesan Biji Kopi Lanang Robusta Telemung Green (Rp 110.000). Apakah stok masih tersedia?">Lihat
+                                        Detail</button>
+                                    <a class="endru_shop_btn_wa" target="_blank" rel="noopener noreferrer"
+                                        href="https://wa.me/6281234567890?text=Halo%20LARASA,%20saya%20ingin%20memesan%20Biji%20Kopi%20Lanang%20Robusta%20Telemung%20Green%20(Rp%20110.000).">
+                                        WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produk Kopi 4 -->
+                    <div class="endru_shop_card" id="endru_prod_4">
+                        <div class="endru_shop_img_wrap">
+                            <img src="assets/images/Biji_Kopi_Arabica_Ijen_Green.jpg" alt="Biji Kopi Arabica Ijen Green"
+                                class="endru_shop_img">
+                            <span class="endru_shop_zoom_hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                Lihat Foto
+                            </span>
+                        </div>
+                        <div class="endru_shop_body">
+                            <h3 class="endru_shop_product_name">Biji Kopi Arabica Ijen Green Bean 1KG</h3>
+                            <p class="endru_shop_desc">Kualitas Grade A / Ekspor, Honey Process, Segar kadar air 10-13%,
+                                Fine Arabica Ijen Green Bean.</p>
+                            <div class="endru_shop_footer_row">
+                                <div class="endru_shop_price_wrap">
+                                    <span class="endru_shop_price_label">Kemasan 1 KG</span>
+                                    <span class="endru_shop_price">Rp 211.000</span>
+                                </div>
+                                <div class="endru_shop_btn_group">
+                                    <button class="endru_shop_btn_detail"
+                                        data-title="Biji Kopi Arabica Ijen Green Bean 1KG" data-price="Rp 211.000"
+                                        data-notes="Kemasan 1 KG · Grade A Ekspor"
+                                        data-desc="Kualitas: Grade A / Kualitas Ekspor. Proses: Honey Process. Kondisi: Segar, Kadar Air: 10-13%. Jenis: Fine Arabica Ijen Green Bean."
+                                        data-badge="Green Bean" data-type="image"
+                                        data-media="assets/images/Biji_Kopi_Arabica_Ijen_Green.jpg"
+                                        data-wa="Halo LARASA, saya ingin memesan Biji Kopi Arabica Ijen Green Bean 1KG (Rp 211.000). Apakah stok masih tersedia?">Lihat
+                                        Detail</button>
+                                    <a class="endru_shop_btn_wa" target="_blank" rel="noopener noreferrer"
+                                        href="https://wa.me/6281234567890?text=Halo%20LARASA,%20saya%20ingin%20memesan%20Biji%20Kopi%20Arabica%20Ijen%20Green%20Bean%201KG%20(Rp%20211.000).">
+                                        WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kategori 2: Merchandise -->
+                <div class="endru_shop_category_header">
+                    <h2 class="endru_shop_category_title">Merchandise Resmi LARASA</h2>
+                </div>
+
+                <div class="endru_shop_grid">
+                    <!-- Merch 1: Tumbler -->
+                    <div class="endru_shop_card" id="endru_prod_5">
+                        <div class="endru_shop_img_wrap">
+                            <img src="assets/images/Tumbler.jpg" alt="Tumbler Stainless LARASA" class="endru_shop_img">
+                            <span class="endru_shop_zoom_hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                Lihat Foto
+                            </span>
+                        </div>
+                        <div class="endru_shop_body">
+                            <h3 class="endru_shop_product_name">Tumbler Stainless LARASA</h3>
+                            <div class="endru_shop_notes">Kapasitas 500ml · Tahan Panas & Dingin 12 Jam</div>
+                            <p class="endru_shop_desc">Tumbler stainless 500ml tahan panas dan dingin. Dapatkan potongan
+                                Rp 5.000 setiap bawa ke kedai.</p>
+                            <div class="endru_shop_footer_row">
+                                <div class="endru_shop_price_wrap">
+                                    <span class="endru_shop_price_label">Kapasitas 500ml</span>
+                                    <span class="endru_shop_price">Rp 145.000</span>
+                                </div>
+                                <div class="endru_shop_btn_group">
+                                    <button class="endru_shop_btn_detail" data-title="Tumbler Stainless LARASA"
+                                        data-price="Rp 145.000"
+                                        data-notes="Kapasitas 500ml · Tahan Panas & Dingin 12 Jam"
+                                        data-desc="Tumbler stainless steel food-grade berkapasitas 500ml dengan isolasi ganda tahan panas dan dingin hingga 12 jam. Dapatkan potongan Rp 5.000 setiap pembelian minuman menggunakan tumbler ini di kedai."
+                                        data-badge="Merchandise" data-type="image"
+                                        data-media="assets/images/Tumbler.jpg"
+                                        data-wa="Halo LARASA, saya ingin memesan Tumbler Stainless LARASA (Rp 145.000). Apakah stok masih tersedia?">Lihat
+                                        Detail</button>
+                                    <a class="endru_shop_btn_wa" target="_blank" rel="noopener noreferrer"
+                                        href="https://wa.me/6281234567890?text=Halo%20LARASA,%20saya%20ingin%20memesan%20Tumbler%20Stainless%20LARASA%20(Rp%20145.000).">
+                                        WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Merch 2: Totebag -->
+                    <div class="endru_shop_card" id="endru_prod_6">
+                        <div class="endru_shop_img_wrap">
+                            <img src="assets/images/Totebag.jpg" alt="Totebag Kanvas LARASA" class="endru_shop_img">
+                            <span class="endru_shop_zoom_hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                Lihat Foto
+                            </span>
+                        </div>
+                        <div class="endru_shop_body">
+                            <h3 class="endru_shop_product_name">Totebag Kanvas LARASA</h3>
+                            <div class="endru_shop_notes">Kanvas Katun Tebal · Sablon Geometris Manual</div>
+                            <p class="endru_shop_desc">Totebag bahan kanvas tebal dengan kompartemen dalam dan
+                                ritsleting. Muat laptop 13 inci.</p>
+                            <div class="endru_shop_footer_row">
+                                <div class="endru_shop_price_wrap">
+                                    <span class="endru_shop_price_label">Ukuran 38x42cm</span>
+                                    <span class="endru_shop_price">Rp 95.000</span>
+                                </div>
+                                <div class="endru_shop_btn_group">
+                                    <button class="endru_shop_btn_detail" data-title="Totebag Kanvas LARASA"
+                                        data-price="Rp 95.000" data-notes="Ukuran 38x42 cm · Kanvas Katun Tebal"
+                                        data-desc="Totebag berbahan kanvas katun tebal dengan sablon grafis geometris khas LARASA. Dilengkapi ritsleting utama dan saku kecil di dalam, muat laptop 13 inci dan tumbler."
+                                        data-badge="Merchandise" data-type="image"
+                                        data-media="assets/images/Totebag.jpg"
+                                        data-wa="Halo LARASA, saya ingin memesan Totebag Kanvas LARASA (Rp 95.000). Apakah stok masih tersedia?">Lihat
+                                        Detail</button>
+                                    <a class="endru_shop_btn_wa" target="_blank" rel="noopener noreferrer"
+                                        href="https://wa.me/6281234567890?text=Halo%20LARASA,%20saya%20ingin%20memesan%20Totebag%20Kanvas%20LARASA%20(Rp%2095.000).">
+                                        WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Merch 3: Kaos -->
+                    <div class="endru_shop_card" id="endru_prod_7">
+                        <div class="endru_shop_img_wrap">
+                            <img src="assets/images/kaos.jpg" alt="Kaos LARASA Brewer Tee" class="endru_shop_img">
+                            <span class="endru_shop_zoom_hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                Lihat Foto
+                            </span>
+                        </div>
+                        <div class="endru_shop_body">
+                            <h3 class="endru_shop_product_name">Kaos LARASA "Brewer" Tee</h3>
+                            <div class="endru_shop_notes">Cotton Combed 30s · Size S - XL · Regular Fit</div>
+                            <p class="endru_shop_desc">Kaos berbahan cotton combed 30s yang sejuk dan nyaman dipakai
+                                harian dengan grafis minimalis LARASA.</p>
+                            <div class="endru_shop_footer_row">
+                                <div class="endru_shop_price_wrap">
+                                    <span class="endru_shop_price_label">Ukuran S - XL</span>
+                                    <span class="endru_shop_price">Rp 175.000</span>
+                                </div>
+                                <div class="endru_shop_btn_group">
+                                    <button class="endru_shop_btn_detail" data-title="Kaos LARASA 'Brewer' Tee"
+                                        data-price="Rp 175.000" data-notes="Bahan Cotton Combed 30s · Size S - XL"
+                                        data-desc="Kaos cotton combed 30s berpotongan regular fit. Nyaman dipakai harian, tersedia ukuran S hingga XL dengan grafis khas barista LARASA."
+                                        data-badge="Merchandise" data-type="image" data-media="assets/images/kaos.jpg"
+                                        data-wa="Halo LARASA, saya ingin memesan Kaos LARASA Brewer Tee (Rp 175.000). Ukuran apa saja yang tersedia?">Lihat
+                                        Detail</button>
+                                    <a class="endru_shop_btn_wa" target="_blank" rel="noopener noreferrer"
+                                        href="https://wa.me/6281234567890?text=Halo%20LARASA,%20saya%20ingin%20memesan%20Kaos%20LARASA%20Brewer%20Tee%20(Rp%20175.000).">
+                                        WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Merch 4: Bundle -->
+                    <div class="endru_shop_card" id="endru_prod_8">
+                        <div class="endru_shop_img_wrap">
+                            <img src="assets/images/all_in_one.png" alt="Larasa Pack (Bundling)" class="endru_shop_img endru_shop_img_contain">
+                            <span class="endru_shop_zoom_hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                Lihat Foto
+                            </span>
+                        </div>
+                        <div class="endru_shop_body">
+                            <h3 class="endru_shop_product_name">Larasa Pack (Bundling)</h3>
+                            <div class="endru_shop_notes">Paket Hemat 3-in-1 · Tumbler + Totebag + Kaos</div>
+                            <p class="endru_shop_desc">Paket hemat bundling merchandise resmi berisi Tumbler Stainless
+                                500ml, Totebag Kanvas, dan Kaos eksklusif.</p>
+                            <div class="endru_shop_footer_row">
+                                <div class="endru_shop_price_wrap">
+                                    <span class="endru_shop_price_label">Paket Bundling</span>
+                                    <span class="endru_shop_price">Rp 290.000</span>
+                                </div>
+                                <div class="endru_shop_btn_group">
+                                    <button class="endru_shop_btn_detail" data-title="Larasa Pack (Bundling)"
+                                        data-price="Rp 290.000"
+                                        data-notes="Paket Hemat 3-in-1: Tumbler + Totebag + Kaos"
+                                        data-desc="Paket bundling resmi paling hemat dari LARASA Coffee. Berisi 1 Tumbler Stainless 500ml, 1 Totebag Kanvas tebal, dan 1 Kaos 'Brewer' eksklusif dalam satu set praktis."
+                                        data-badge="Paket Hemat" data-type="image"
+                                        data-media="assets/images/all_in_one.png"
+                                        data-wa="Halo LARASA, saya ingin memesan Larasa Pack Bundling (Rp 290.000). Apakah stok masih tersedia?">Lihat
+                                        Detail</button>
+                                    <a class="endru_shop_btn_wa" target="_blank" rel="noopener noreferrer"
+                                        href="https://wa.me/6281234567890?text=Halo%20LARASA,%20saya%20ingin%20memesan%20Larasa%20Pack%20Bundling%20(Rp%20290.000).">
+                                        WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Popup Detail Produk -->
+    <div class="endru_shop_modal_overlay" id="endru_shop_modal" role="dialog" aria-modal="true"
+        aria-labelledby="endru_modal_title">
+        <div class="endru_shop_modal_inner">
+            <button class="endru_shop_modal_close" id="endru_modal_close"
+                aria-label="Tutup Detail Produk">&times;</button>
+            <div class="endru_shop_modal_media" id="endru_modal_media">
+                <!-- Rendered dynamically via JS -->
+            </div>
+            <div class="endru_shop_modal_content">
+                <span class="endru_shop_modal_badge_tag" id="endru_modal_badge">Produk</span>
+                <h2 class="endru_shop_modal_title" id="endru_modal_title">Nama Produk</h2>
+                <div class="endru_shop_modal_price" id="endru_modal_price">Rp 0</div>
+                <div class="endru_shop_modal_notes" id="endru_modal_notes">Catatan Rasa / Spesifikasi</div>
+                <p class="endru_shop_modal_desc" id="endru_modal_desc">Deskripsi lengkap produk.</p>
+                <div class="endru_shop_modal_cta">
+                    <a class="endru_shop_modal_wa_btn" id="endru_modal_wa_btn" href="#" target="_blank"
+                        rel="noopener noreferrer">
+                        Pesan via WhatsApp Langsung &rarr;
+                    </a>
+                    <span class="endru_shop_modal_hint">Konfirmasi pesanan dan pengiriman langsung dengan barista
+                        LARASA</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    
+    <!-- Modal Lightbox Pratinjau Foto Full -->
+    <div class="endru_lightbox_overlay" id="endru_lightbox_modal" role="dialog" aria-modal="true" aria-label="Pratinjau Foto Penuh">
+        <div class="endru_lightbox_dialog">
+            <button class="endru_lightbox_close" id="endru_lightbox_close" aria-label="Tutup Pratinjau Foto">&times;</button>
+            <img class="endru_lightbox_img" id="endru_lightbox_img" src="" alt="Pratinjau Foto">
+            <div class="endru_lightbox_caption" id="endru_lightbox_caption"></div>
+        </div>
+    </div>
+
+    <footer id="endru_footer">
+        <div class="endru_container endru_footer_inner">
+            <div>
+                <span class="endru_footer_brand">LARASA Coffee</span>
+                <span>© 2026 Hak Cipta Dilindungi — Dibuat oleh Endru.</span>
+            </div>
+            <div class="endru_footer_links">
+                <a href="index.html#endru_hero" class="endru_footer_link">Beranda</a>
+                <a href="ourstory.html" class="endru_footer_link">Our Story</a>
+                <a href="berita.html" class="endru_footer_link">Berita</a>
+                <a href="menu.html" class="endru_footer_link">Menu</a>
+                <a href="shop.html" class="endru_footer_link">Shop</a>
+                <a href="galeri.html" class="endru_footer_link">Galeri</a>
+                <a href="loyalty.html" class="endru_footer_link">Loyalty</a>
+                <a href="index.html#endru_contact" class="endru_footer_link">Kontak</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // === Modal Detail Produk & WhatsApp Order ===
+        const endru_modalOverlay = document.getElementById('endru_shop_modal');
+        const endru_modalCloseBtn = document.getElementById('endru_modal_close');
+        const endru_modalMedia = document.getElementById('endru_modal_media');
+        const endru_modalBadge = document.getElementById('endru_modal_badge');
+        const endru_modalTitle = document.getElementById('endru_modal_title');
+        const endru_modalPrice = document.getElementById('endru_modal_price');
+        const endru_modalNotes = document.getElementById('endru_modal_notes');
+        const endru_modalDesc = document.getElementById('endru_modal_desc');
+        const endru_modalWaBtn = document.getElementById('endru_modal_wa_btn');
+        const endru_detailButtons = document.querySelectorAll('.endru_shop_btn_detail');
+
+        function endru_openModal(button) {
+            const title = button.getAttribute('data-title') || '';
+            const price = button.getAttribute('data-price') || '';
+            const notes = button.getAttribute('data-notes') || '';
+            const desc = button.getAttribute('data-desc') || '';
+            const badge = button.getAttribute('data-badge') || 'Produk';
+            const type = button.getAttribute('data-type') || 'image';
+            const mediaUrl = button.getAttribute('data-media') || '';
+            const iconId = button.getAttribute('data-icon-id') || '';
+            const waText = button.getAttribute('data-wa') || ('Halo LARASA, saya ingin memesan ' + title);
+
+            endru_modalTitle.textContent = title;
+            endru_modalPrice.textContent = price;
+            endru_modalNotes.textContent = notes;
+            endru_modalDesc.textContent = desc;
+            endru_modalBadge.textContent = badge;
+
+            // WhatsApp link
+            const waHref = 'https://wa.me/6281234567890?text=' + encodeURIComponent(waText);
+            endru_modalWaBtn.setAttribute('href', waHref);
+
+            // Media rendering
+            if (type === 'image' && mediaUrl) {
+                const isContain = mediaUrl.includes('all_in_one') ? ' class="endru_shop_img_contain"' : '';
+                endru_modalMedia.innerHTML = '<img src="' + mediaUrl + '" alt="' + title + '"' + isContain + '>';
+            } else if (iconId) {
+                const sourceIcon = document.getElementById(iconId);
+                if (sourceIcon) {
+                    endru_modalMedia.innerHTML = sourceIcon.innerHTML;
+                } else {
+                    endru_modalMedia.innerHTML = '';
+                }
+            } else {
+                endru_modalMedia.innerHTML = '';
+            }
+
+            endru_modalOverlay.classList.add('endru_modal_active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function endru_closeModal() {
+            endru_modalOverlay.classList.remove('endru_modal_active');
+            document.body.style.overflow = '';
+        }
+
+        // === Lightbox Pratinjau Foto Full ===
+        const endru_lightboxModal = document.getElementById('endru_lightbox_modal');
+        const endru_lightboxImg = document.getElementById('endru_lightbox_img');
+        const endru_lightboxCaption = document.getElementById('endru_lightbox_caption');
+        const endru_lightboxCloseBtn = document.getElementById('endru_lightbox_close');
+
+        function endru_openLightbox(src, title) {
+            if (!src) return;
+            endru_lightboxImg.src = src;
+            endru_lightboxImg.alt = title || 'Foto Produk';
+            endru_lightboxCaption.textContent = title || '';
+            endru_lightboxModal.classList.add('endru_lightbox_active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function endru_closeLightbox() {
+            endru_lightboxModal.classList.remove('endru_lightbox_active');
+            if (!endru_modalOverlay.classList.contains('endru_modal_active')) {
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Klik foto pada kartu produk untuk melihat foto full
+        document.querySelectorAll('.endru_shop_img_wrap').forEach(function (wrap) {
+            wrap.addEventListener('click', function () {
+                const img = wrap.querySelector('.endru_shop_img');
+                const card = wrap.closest('.endru_shop_card');
+                const titleEl = card ? card.querySelector('.endru_shop_product_name') : null;
+                const title = titleEl ? titleEl.textContent.trim() : (img ? img.alt : '');
+                if (img) {
+                    endru_openLightbox(img.getAttribute('src'), title);
+                }
+            });
+        });
+
+        // Klik foto pada modal detail untuk perbesar ke lightbox
+        if (endru_modalMedia) {
+            endru_modalMedia.style.cursor = 'pointer';
+            endru_modalMedia.title = 'Klik untuk melihat foto ukuran penuh';
+            endru_modalMedia.addEventListener('click', function () {
+                const img = endru_modalMedia.querySelector('img');
+                if (img) {
+                    endru_openLightbox(img.getAttribute('src'), endru_modalTitle.textContent);
+                }
+            });
+        }
+
+        if (endru_lightboxCloseBtn) {
+            endru_lightboxCloseBtn.addEventListener('click', endru_closeLightbox);
+        }
+
+        if (endru_lightboxModal) {
+            endru_lightboxModal.addEventListener('click', function (e) {
+                if (e.target === endru_lightboxModal) {
+                    endru_closeLightbox();
+                }
+            });
+        }
+
+        endru_detailButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                endru_openModal(btn);
+            });
+        });
+
+        if (endru_modalCloseBtn) {
+            endru_modalCloseBtn.addEventListener('click', endru_closeModal);
+        }
+
+        if (endru_modalOverlay) {
+            endru_modalOverlay.addEventListener('click', function (e) {
+                if (e.target === endru_modalOverlay) {
+                    endru_closeModal();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                if (endru_lightboxModal && endru_lightboxModal.classList.contains('endru_lightbox_active')) {
+                    endru_closeLightbox();
+                } else if (endru_modalOverlay && endru_modalOverlay.classList.contains('endru_modal_active')) {
+                    endru_closeModal();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

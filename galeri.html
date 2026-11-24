@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Galeri Suasana - LARASA Coffee</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ==========================================================================
+           Halaman Galeri (Prefix: endru_galeri_*)
+           ========================================================================== */
+        .endru_galeri_hero {
+            background-color: var(--color-warm-beige);
+            padding: 95px 0 65px;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+        .endru_galeri_hero_title {
+            font-family: 'Newsreader', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--color-espresso);
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+        .endru_galeri_hero_desc {
+            font-size: 1.15rem;
+            color: var(--color-text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Filter Tabs */
+        .endru_galeri_section {
+            background-color: var(--color-soft-white);
+            padding: 80px 0 120px;
+        }
+        .endru_galeri_filter_wrap {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 56px;
+        }
+        .endru_galeri_filter_btn {
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--color-border-subtle);
+            background-color: transparent;
+            color: var(--color-text-secondary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease;
+        }
+        .endru_galeri_filter_btn:hover,
+        .endru_galeri_filter_btn.endru_filter_active {
+            background-color: var(--color-espresso);
+            color: var(--color-text-inverse);
+            border-color: var(--color-espresso);
+        }
+
+        /* Masonry-like Photo Grid */
+        .endru_galeri_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 640px) {
+            .endru_galeri_grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .endru_galeri_grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .endru_galeri_item {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background-color: var(--color-warm-beige);
+            cursor: pointer;
+            aspect-ratio: 4 / 3;
+            box-shadow: var(--shadow-soft);
+            transition: box-shadow 250ms ease;
+        }
+        .endru_galeri_item.endru_galeri_tall {
+            aspect-ratio: 3 / 4;
+        }
+        .endru_galeri_item:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        .endru_galeri_item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 400ms ease;
+            display: block;
+        }
+        .endru_galeri_item:hover img {
+            transform: scale(1.07);
+        }
+        .endru_galeri_item_overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(48,40,32,0.75) 0%, transparent 55%);
+            opacity: 0;
+            transition: opacity 300ms ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 22px;
+        }
+        .endru_galeri_item:hover .endru_galeri_item_overlay {
+            opacity: 1;
+        }
+        .endru_galeri_item_caption {
+            color: var(--color-soft-white);
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        .endru_galeri_item_tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-warm-beige);
+            opacity: 0.85;
+            margin-bottom: 5px;
+        }
+
+        /* Lightbox */
+        .endru_lightbox_overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 16, 12, 0.92);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .endru_lightbox_overlay.endru_lightbox_open {
+            display: flex;
+        }
+        .endru_lightbox_inner {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+        }
+        .endru_lightbox_img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            display: block;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+        .endru_lightbox_caption {
+            text-align: center;
+            margin-top: 16px;
+            color: var(--color-warm-beige);
+            font-size: 1rem;
+        }
+        .endru_lightbox_close {
+            position: absolute;
+            top: -44px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--color-soft-white);
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 150ms ease;
+        }
+        .endru_lightbox_close:hover {
+            color: var(--color-coffee-brown);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- BEGIN: MainHeader (#endru_header) -->
+    <header id="endru_header" data-purpose="navigation-header">
+        <div class="endru_container endru_header_inner">
+            <a aria-label="Beranda LARASA" class="endru_brand_logo" href="index.html">
+                <img class="endru_logo_image" src="assets/images/logo.png" alt="LARASA Coffee Logo">
+            </a>
+            <button id="endru_mobile_toggle" class="endru_mobile_toggle" aria-label="Buka Menu Navigasi">
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+                <span class="endru_toggle_line"></span>
+            </button>
+            <nav aria-label="Main Navigation" id="endru_nav_links" class="endru_nav_links">
+                <a class="endru_nav_link" href="index.html">Beranda</a>
+                <a class="endru_nav_link" href="ourstory.html">Our Story</a>
+                <a class="endru_nav_link" href="berita.html">Berita</a>
+                <a class="endru_nav_link" href="menu.html">Menu</a>
+                <a class="endru_nav_link" href="shop.html">Shop</a>
+                <a class="endru_nav_link endru_nav_link_active" href="galeri.html">Galeri</a>
+                <a class="endru_nav_link" href="loyalty.html">Loyalty</a>
+                <a class="endru_nav_link" href="index.html#endru_contact">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="endru_galeri_hero">
+            <div class="endru_container">
+                <h1 class="endru_galeri_hero_title">GALERI KEDAI &amp; MOMEN</h1>
+                <p class="endru_galeri_hero_desc">
+                    Beberapa momen dari kedai kami
+                </p>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="endru_galeri_section">
+            <div class="endru_container">
+
+                <!-- Filter Buttons -->
+                <div class="endru_galeri_filter_wrap">
+                    <button class="endru_galeri_filter_btn endru_filter_active" data-filter="semua">Semua</button>
+                    <button class="endru_galeri_filter_btn" data-filter="suasana">Suasana Kedai</button>
+                    <button class="endru_galeri_filter_btn" data-filter="barista">Aksi Barista</button>
+                    <button class="endru_galeri_filter_btn" data-filter="event">Event &amp; Komunitas</button>
+                    <button class="endru_galeri_filter_btn" data-filter="menu">Sajian Menu</button>
+                </div>
+
+                <!-- Photo Grid -->
+                <div class="endru_galeri_grid" id="endru_galeri_grid">
+
+                    <!-- Suasana Kedai -->
+                    <div class="endru_galeri_item" data-category="suasana" data-caption="Dedicated Work Space — Colokan &amp; Wi-Fi di setiap meja">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Dedicated Work Space">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Suasana Kedai</span>
+                                <div class="endru_galeri_item_caption">Dedicated Work Space</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="endru_galeri_item endru_galeri_tall" data-category="suasana" data-caption="Open Air Garden — Santai sore di taman terbuka">
+                        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80" alt="Open Air Garden">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Suasana Kedai</span>
+                                <div class="endru_galeri_item_caption">Open Air Garden</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="endru_galeri_item" data-category="suasana" data-caption="Sudut Buku &amp; Santai — Nikmati kopi ditemani bacaan favoritmu">
+                        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=800&q=80" alt="Sudut Santai">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Suasana Kedai</span>
+                                <div class="endru_galeri_item_caption">Sudut Buku &amp; Santai</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="endru_galeri_item" data-category="suasana" data-caption="Interior Warm Lighting — Cahaya hangat khas LARASA">
+                        <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="Interior LARASA">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Suasana Kedai</span>
+                                <div class="endru_galeri_item_caption">Interior Warm Lighting</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aksi Barista -->
+                    <div class="endru_galeri_item endru_galeri_tall" data-category="barista" data-caption="Artisan Slow Bar — Proses seduh manual V60 yang presisi">
+                        <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80" alt="Slow Bar V60">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Aksi Barista</span>
+                                <div class="endru_galeri_item_caption">Artisan Slow Bar</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="endru_galeri_item" data-category="barista" data-caption="Latte Art — Setiap cangkir adalah kanvas">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Latte Art">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Aksi Barista</span>
+                                <div class="endru_galeri_item_caption">Latte Art</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="endru_galeri_item" data-category="barista" data-caption="Roastery — Proses roasting biji kopi segar dari Jawa Barat">
+                        <img src="https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?auto=format&fit=crop&w=800&q=80" alt="Roastery">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Aksi Barista</span>
+                                <div class="endru_galeri_item_caption">Proses Roastery</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event & Komunitas -->
+                    <div class="endru_galeri_item" data-category="event" data-caption="Nobar Persib — Area indoor &amp; outdoor dengan layar lebar">
+                        <img src="assets/images/nobar.jpg" alt="Nobar Persib">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Event &amp; Komunitas</span>
+                                <div class="endru_galeri_item_caption">Nobar Persib Bandung</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="endru_galeri_item endru_galeri_tall" data-category="event" data-caption="Workshop Manual Brew — Kelas kopi setiap akhir pekan">
+                        <img src="https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=800&q=80" alt="Workshop Kopi">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Event &amp; Komunitas</span>
+                                <div class="endru_galeri_item_caption">Workshop Manual Brew</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="endru_galeri_item" data-category="event" data-caption="Promo Jersey Persib — Diskon 10% pakai atribut kebanggaan">
+                        <img src="assets/images/Baju_Persib.jpg" alt="Jersey Persib">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Event &amp; Komunitas</span>
+                                <div class="endru_galeri_item_caption">Promo Jersey Persib</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sajian Menu -->
+                    <div class="endru_galeri_item" data-category="menu" data-caption="Promo Buy 1 Get 1 — Semua menu minuman berlaku promo">
+                        <img src="assets/images/Buy_one.jpg" alt="Buy 1 Get 1">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Sajian Menu</span>
+                                <div class="endru_galeri_item_caption">Promo Buy 1 Get 1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="endru_galeri_item" data-category="menu" data-caption="Ragam Minuman Artisan — Dinikmati hangat maupun dingin">
+                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80" alt="Ragam Minuman">
+                        <div class="endru_galeri_item_overlay">
+                            <div>
+                                <span class="endru_galeri_item_tag">Sajian Menu</span>
+                                <div class="endru_galeri_item_caption">Ragam Minuman Artisan</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="endru_lightbox_overlay" id="endru_lightbox">
+        <div class="endru_lightbox_inner">
+            <button class="endru_lightbox_close" id="endru_lightbox_close" aria-label="Tutup">&times;</button>
+            <img class="endru_lightbox_img" id="endru_lightbox_img" src="" alt="">
+            <p class="endru_lightbox_caption" id="endru_lightbox_caption"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="endru_footer">
+        <div class="endru_container endru_footer_inner">
+            <div>
+                <span class="endru_footer_brand">LARASA Coffee</span>
+                <span>© 2026 Hak Cipta Dilindungi — Dibuat oleh Endru.</span>
+            </div>
+            <div class="endru_footer_links">
+                <a href="index.html#endru_hero" class="endru_footer_link">Beranda</a>
+                <a href="ourstory.html" class="endru_footer_link">Our Story</a>
+                <a href="berita.html" class="endru_footer_link">Berita</a>
+                <a href="menu.html" class="endru_footer_link">Menu</a>
+                <a href="shop.html" class="endru_footer_link">Shop</a>
+                <a href="galeri.html" class="endru_footer_link">Galeri</a>
+                <a href="loyalty.html" class="endru_footer_link">Loyalty</a>
+                <a href="index.html#endru_contact" class="endru_footer_link">Kontak</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // === Filter Galeri ===
+        const endru_filterBtns = document.querySelectorAll('.endru_galeri_filter_btn');
+        const endru_galeriItems = document.querySelectorAll('.endru_galeri_item');
+
+        endru_filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                // Update active button
+                endru_filterBtns.forEach(function(b) { b.classList.remove('endru_filter_active'); });
+                btn.classList.add('endru_filter_active');
+
+                const endru_filter = btn.getAttribute('data-filter');
+
+                endru_galeriItems.forEach(function(item) {
+                    if (endru_filter === 'semua' || item.getAttribute('data-category') === endru_filter) {
+                        item.style.display = 'block';
+                        setTimeout(function() { item.style.opacity = '1'; }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(function() { item.style.display = 'none'; }, 250);
+                    }
+                });
+            });
+        });
+
+        // === Lightbox ===
+        const endru_lightbox = document.getElementById('endru_lightbox');
+        const endru_lightboxImg = document.getElementById('endru_lightbox_img');
+        const endru_lightboxCaption = document.getElementById('endru_lightbox_caption');
+        const endru_lightboxClose = document.getElementById('endru_lightbox_close');
+
+        endru_galeriItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                const endru_imgEl = item.querySelector('img');
+                endru_lightboxImg.src = endru_imgEl.src;
+                endru_lightboxImg.alt = endru_imgEl.alt;
+                endru_lightboxCaption.textContent = item.getAttribute('data-caption') || '';
+                endru_lightbox.classList.add('endru_lightbox_open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        endru_lightboxClose.addEventListener('click', function() {
+            endru_lightbox.classList.remove('endru_lightbox_open');
+            document.body.style.overflow = '';
+        });
+
+        endru_lightbox.addEventListener('click', function(e) {
+            if (e.target === endru_lightbox) {
+                endru_lightbox.classList.remove('endru_lightbox_open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                endru_lightbox.classList.remove('endru_lightbox_open');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>

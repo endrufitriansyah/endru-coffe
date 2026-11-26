@@ -1,14 +1,13 @@
 /* ==========================================================================
    LARASA Design System & Theme Variables
    Aturan Ujian: Semua Penulisan Class dan ID Menggunakan Kombinasi "endru_"
-   Mode: antislop (craftsmanship, purposeful, high contrast, warm earthy)
    ========================================================================== */
 :root {
-    /* 1. Core Color Palette */
-    --color-soft-white: #FAF9F6;   /* 60% Dominant Background Canvas */
-    --color-warm-beige: #EAE2D8;   /* 25% Secondary / Surfaces / Cards */
-    --color-coffee-brown: #98765B; /* 15% Accent / Brand Highlight / Interactive */
-    --color-espresso: #302820;     /* Primary Text, Deep Containers & Headlines */
+    /* 1. Palet Warna Utama */
+    --color-soft-white: #FAF9F6;   /* Latar belakang utama */
+    --color-warm-beige: #EAE2D8;   /* Warna sekunder & kartu */
+    --color-coffee-brown: #98765B; /* Warna aksen & tombol */
+    --color-espresso: #302820;     /* Teks utama & kontainer gelap */
 
     /* 2. Text Hierarchy */
     --color-text-primary: var(--color-espresso);
@@ -740,7 +739,6 @@ a {
 
 /* ==========================================================================
    Section: LarasaNews Showcase (#endru_home_news)
-   Layout: ForeNews Style (Watermark, Left Title, Right Subtitle, 4 Cards, Center Button)
    ========================================================================== */
 #endru_home_news {
     position: relative;
@@ -782,7 +780,7 @@ a {
     width: 100%;
 }
 
-/* Header: Title on Left, Subtitle on Right */
+/* Header Berita */
 .endru_home_news_header {
     display: flex;
     flex-direction: column;
@@ -808,7 +806,7 @@ a {
     max-width: 440px;
 }
 
-/* 4 Cards Grid */
+/* Grid Kartu Berita */
 .endru_home_news_grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -889,7 +887,7 @@ a {
     border-top: 1px solid var(--color-border-subtle);
 }
 
-/* Center Action Button */
+/* Tombol Aksi */
 .endru_home_news_action {
     display: flex;
     justify-content: center;

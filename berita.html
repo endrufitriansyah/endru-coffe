@@ -11,7 +11,7 @@
     <!-- Custom CSS (Wajib kombinasi nama endru_) -->
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Specific Styles untuk Halaman Berita (Prefix: endru_news_*) */
+        /* Style Halaman Berita */
         .endru_news_hero {
             background-color: var(--color-warm-beige);
             padding: 95px 0 65px;
@@ -170,23 +170,23 @@
 </head>
 
 <body>
-    <!-- BEGIN: MainHeader (#endru_header) -->
-    <header id="endru_header" data-purpose="navigation-header">
+    <!-- Header Navigasi (#endru_header) -->
+    <header id="endru_header">
         <div class="endru_container endru_header_inner">
-            <!-- Brand Logo (Left) -->
-            <a aria-label="Beranda LARASA" class="endru_brand_logo" data-purpose="brand-logo" href="index.html">
+            <!-- Logo Brand -->
+            <a aria-label="Beranda LARASA" class="endru_brand_logo" href="index.html">
                 <img class="endru_logo_image" src="assets/images/logo.png" alt="LARASA Coffee Logo">
             </a>
 
-            <!-- Mobile Hamburger Toggle Button -->
+            <!-- Tombol Menu Mobile -->
             <button id="endru_mobile_toggle" class="endru_mobile_toggle" aria-label="Buka Menu Navigasi">
                 <span class="endru_toggle_line"></span>
                 <span class="endru_toggle_line"></span>
                 <span class="endru_toggle_line"></span>
             </button>
 
-            <!-- Center Navigation Links -->
-            <nav aria-label="Main Navigation" id="endru_nav_links" class="endru_nav_links">
+            <!-- Tautan Navigasi -->
+            <nav aria-label="Navigasi Utama" id="endru_nav_links" class="endru_nav_links">
                 <a class="endru_nav_link" href="index.html">Beranda</a>
                 <a class="endru_nav_link" href="ourstory.html">Our Story</a>
                 <a class="endru_nav_link endru_nav_link_active" href="berita.html">Berita</a>
@@ -198,10 +198,9 @@
             </nav>
         </div>
     </header>
-    <!-- END: MainHeader -->
 
     <main>
-        <!-- News Hero Banner -->
+        <!-- Banner Berita -->
         <section class="endru_news_hero">
             <div class="endru_container">
                 <h1 class="endru_news_headline">KABAR & AGENDA KEDAI</h1>
@@ -211,11 +210,11 @@
             </div>
         </section>
 
-        <!-- News Articles Grid -->
+        <!-- Grid Artikel Berita -->
         <section class="endru_news_section">
             <div class="endru_container">
                 <div class="endru_news_grid">
-                    <!-- Berita 1: Promo Buy 1 Get 1 (sama dengan homepage) -->
+                    <!-- Berita 1: Promo Buy 1 Get 1 -->
                     <article class="endru_news_card">
                         <div class="endru_news_img_wrap">
                             <img class="endru_news_img" src="assets/images/Buy_one.jpg" alt="Promo Buy 1 Get 1">
@@ -235,7 +234,7 @@
                         </div>
                     </article>
 
-                    <!-- Berita 2: Nobar Persib (sama dengan homepage) -->
+                    <!-- Berita 2: Nobar Persib -->
                     <article class="endru_news_card">
                         <div class="endru_news_img_wrap">
                             <img class="endru_news_img" src="assets/images/nobar.jpg" alt="Nobar Persib">
@@ -255,7 +254,7 @@
                         </div>
                     </article>
 
-                    <!-- Berita 3: Diskon Baju Persib (sama dengan homepage) -->
+                    <!-- Berita 3: Diskon Baju Persib -->
                     <article class="endru_news_card">
                         <div class="endru_news_img_wrap">
                             <img class="endru_news_img" src="assets/images/Baju_Persib.jpg" alt="Diskon Jersey Persib">
@@ -279,7 +278,7 @@
         </section>
     </main>
 
-    <!-- BEGIN: Footer (#endru_footer) -->
+    <!-- Footer (#endru_footer) -->
     <footer id="endru_footer">
         <div class="endru_container endru_footer_inner">
             <div>
@@ -298,9 +297,8 @@
             </div>
         </div>
     </footer>
-    <!-- END: Footer -->
 
-    <!-- Interactive JavaScript -->
+    <!-- Script Utama -->
     <script src="js/script.js"></script>
 </body>
 </html>

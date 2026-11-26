@@ -16,23 +16,23 @@
 </head>
 
 <body>
-    <!-- BEGIN: MainHeader (#endru_header) -->
-    <header id="endru_header" data-purpose="navigation-header">
+    <!-- Header Navigasi (#endru_header) -->
+    <header id="endru_header">
         <div class="endru_container endru_header_inner">
-            <!-- Brand Logo (Left) -->
-            <a aria-label="Beranda LARASA" class="endru_brand_logo" data-purpose="brand-logo" href="#">
+            <!-- Logo Brand -->
+            <a aria-label="Beranda LARASA" class="endru_brand_logo" href="#">
                 <img class="endru_logo_image" src="assets/images/logo.png" alt="LARASA Coffee Logo">
             </a>
 
-            <!-- Mobile Hamburger Toggle Button -->
+            <!-- Tombol Menu Mobile -->
             <button id="endru_mobile_toggle" class="endru_mobile_toggle" aria-label="Buka Menu Navigasi">
                 <span class="endru_toggle_line"></span>
                 <span class="endru_toggle_line"></span>
                 <span class="endru_toggle_line"></span>
             </button>
 
-            <!-- Center Navigation Links -->
-            <nav aria-label="Main Navigation" id="endru_nav_links" class="endru_nav_links">
+            <!-- Tautan Navigasi -->
+            <nav aria-label="Navigasi Utama" id="endru_nav_links" class="endru_nav_links">
                 <a class="endru_nav_link endru_nav_link_active" href="#endru_hero">Beranda</a>
                 <a class="endru_nav_link" href="ourstory.html">Our Story</a>
                 <a class="endru_nav_link" href="berita.html">Berita</a>
@@ -44,9 +44,8 @@
             </nav>
         </div>
     </header>
-    <!-- END: MainHeader -->
 
-    <!-- BEGIN: Main Content (7 Section Utama) -->
+    <!-- Konten Utama -->
     <main>
         <!-- 1. Hero Section (#endru_hero) -->
         <section id="endru_hero" class="endru_section">
@@ -232,7 +231,7 @@
 
         <!-- 5. Berita Terkini (#endru_home_news) - Mengarah ke berita.html -->
         <section id="endru_home_news" class="endru_section endru_home_news_section">
-            <!-- Background Outline Text Banner -->
+            <!-- Teks Latar Belakang -->
             <div class="endru_news_watermark_wrap" aria-hidden="true">
                 <div class="endru_news_watermark">
                     <svg class="endru_news_svg_text" viewBox="0 0 3200 120" preserveAspectRatio="xMinYMid meet"
@@ -244,14 +243,14 @@
             </div>
 
             <div class="endru_container endru_home_news_container">
-                <!-- Section Header: Title on Left, Subtitle on Right -->
+                <!-- Header Section -->
                 <div class="endru_home_news_header">
                     <h2 class="endru_home_news_title">LarasaNews</h2>
                 </div>
 
-                <!-- 4 News Cards Grid -->
+                <!-- Grid Kartu Berita -->
                 <div class="endru_home_news_grid">
-                    <!-- Card 1 -->
+                    <!-- Kartu 1 -->
                     <article class="endru_home_news_card">
                         <div class="endru_home_news_img_wrap">
                             <img src="assets/images/Buy_one.jpg" alt="by 1 get 1" class="endru_home_news_img">
@@ -262,7 +261,7 @@
                         </div>
                     </article>
 
-                    <!-- Card 2 -->
+                    <!-- Kartu 2 -->
                     <article class="endru_home_news_card">
                         <div class="endru_home_news_img_wrap">
                             <img src="assets/images/nobar.jpg" alt="Nobar" class="endru_home_news_img">
@@ -273,7 +272,7 @@
                         </div>
                     </article>
 
-                    <!-- Card 3 -->
+                    <!-- Kartu 3 -->
                     <article class="endru_home_news_card">
                         <div class="endru_home_news_img_wrap">
                             <img src="assets/images/Baju_Persib.jpg" alt="Baju Persib" class="endru_home_news_img">
@@ -285,7 +284,7 @@
                     </article>
                 </div>
 
-                <!-- Center Action Button linking to berita.html -->
+                <!-- Tombol Lihat Semua Berita -->
                 <div class="endru_home_news_action">
                     <a href="berita.html" class="endru_btn_news_more">
                         Selengkapnya
@@ -294,7 +293,7 @@
             </div>
         </section>
 
-        <!-- 7. Testimoni Pembeli / Pengunjung Kedai (#endru_testimonials) -->
+        <!-- 6. Testimoni Pembeli / Pengunjung Kedai (#endru_testimonials) -->
         <section id="endru_testimonials" class="endru_section endru_testimonials_section">
             <div class="endru_container endru_testimonials_container">
                 <div class="endru_testimonials_header">
@@ -305,7 +304,7 @@
                     </p>
                 </div>
 
-                <!-- 3 Testimonial Cards Grid -->
+                <!-- Grid Kartu Testimoni -->
                 <div class="endru_testimonials_grid">
                     <!-- Testimoni 1 -->
                     <div class="endru_testimonial_card">
@@ -345,11 +344,11 @@
             </div>
         </section>
 
-        <!-- 8. Form Kontak (#endru_contact) - Syarat Wajib UTS Aturan No. 2 -->
+        <!-- 7. Form Kontak (#endru_contact) - Syarat Wajib UTS Aturan No. 2 -->
         <section id="endru_contact" class="endru_section">
             <div class="endru_container endru_contact_container">
                 <div class="endru_contact_wrapper">
-                    <!-- Left: Info & Location -->
+                    <!-- Info & Lokasi Kedai -->
                     <div class="endru_contact_info">
                         <div class="endru_section_kicker">Hubungi Kami</div>
                         <h2 class="endru_contact_title">Mari Terhubung dan Berbincang</h2>
@@ -387,7 +386,7 @@
                         </div>
                     </div>
 
-                    <!-- Right: Form Inputan (Syarat UTS: Kirim Pesan ke Pemilik Website) -->
+                    <!-- Form Inputan (Syarat UTS: Kirim Pesan ke Pemilik Website) -->
                     <div class="endru_contact_card">
                         <!-- Alert Feedback Interaktif -->
                         <div id="endru_alert_success" class="endru_alert_success" role="alert"></div>
@@ -426,9 +425,8 @@
             </div>
         </section>
     </main>
-    <!-- END: Main Content -->
 
-    <!-- BEGIN: Footer (#endru_footer) -->
+    <!-- Footer (#endru_footer) -->
     <footer id="endru_footer">
         <div class="endru_container endru_footer_inner">
             <div>
@@ -447,9 +445,8 @@
             </div>
         </div>
     </footer>
-    <!-- END: Footer -->
 
-    <!-- Interactive JavaScript -->
+    <!-- Script Utama -->
     <script src="js/script.js"></script>
 </body>
 

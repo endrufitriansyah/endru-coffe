@@ -1,9 +1,9 @@
 /**
  * Script Interaktif Web LARASA Coffee (Kombinasi Nama: endru_)
- * Fitur: Mobile Hamburger Toggle, Form Validation & Formspree AJAX Submission
+ * Fitur: Menu Mobile, Validasi Form & Pengiriman Formspree (AJAX)
  */
 document.addEventListener('DOMContentLoaded', function () {
-    // 1. Mobile Menu Toggle
+    // 1. Toggle Menu Mobile
     const endru_mobileToggle = document.getElementById('endru_mobile_toggle');
     const endru_navLinks = document.getElementById('endru_nav_links');
 
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
             endru_navLinks.classList.toggle('endru_mobile_open');
         });
 
-        // Close mobile menu on link click
+        // Tutup menu mobile saat tautan diklik
         endru_navLinks.querySelectorAll('.endru_nav_link').forEach(link => {
             link.addEventListener('click', function () {
                 endru_navLinks.classList.remove('endru_mobile_open');
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 2. Contact Form Interactive Submission via Formspree (AJAX / Fetch)
+    // 2. Pengiriman Form Kontak via Formspree (AJAX)
     const endru_contactForm = document.getElementById('endru_contact_form');
     const endru_alertSuccess = document.getElementById('endru_alert_success');
     const endru_submitBtn = document.getElementById('endru_btn_submit');
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     endru_submitBtn.disabled = false;
                     endru_submitBtn.innerHTML = originalBtnContent;
                 }
-                // Auto-hide alert after 7 seconds
+                // Sembunyikan notifikasi otomatis setelah 7 detik
                 setTimeout(function () {
                     if (endru_alertSuccess) {
                         endru_alertSuccess.style.display = 'none';

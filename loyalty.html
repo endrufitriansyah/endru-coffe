@@ -11,10 +11,7 @@
     <!-- Custom CSS (Wajib kombinasi nama endru_) -->
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* ==========================================================================
-           Halaman Loyalty / LARASA VIP (Prefix: endru_loyalty_*)
-           Warna background disesuaikan dengan tema LARASA: Espresso & Warm Earthy
-           ========================================================================== */
+        /* Style Halaman Loyalty / LARASA VIP */
 
         /* 1. Hero Section */
         .endru_loyalty_hero {
@@ -412,23 +409,23 @@
 </head>
 
 <body>
-    <!-- BEGIN: MainHeader (#endru_header) -->
-    <header id="endru_header" data-purpose="navigation-header">
+    <!-- Header Navigasi (#endru_header) -->
+    <header id="endru_header">
         <div class="endru_container endru_header_inner">
-            <!-- Brand Logo (Left) -->
-            <a aria-label="Beranda LARASA" class="endru_brand_logo" data-purpose="brand-logo" href="index.html">
+            <!-- Logo Brand -->
+            <a aria-label="Beranda LARASA" class="endru_brand_logo" href="index.html">
                 <img class="endru_logo_image" src="assets/images/logo.png" alt="LARASA Coffee Logo">
             </a>
 
-            <!-- Mobile Hamburger Toggle Button -->
+            <!-- Tombol Menu Mobile -->
             <button id="endru_mobile_toggle" class="endru_mobile_toggle" aria-label="Buka Menu Navigasi">
                 <span class="endru_toggle_line"></span>
                 <span class="endru_toggle_line"></span>
                 <span class="endru_toggle_line"></span>
             </button>
 
-            <!-- Center Navigation Links -->
-            <nav aria-label="Main Navigation" id="endru_nav_links" class="endru_nav_links">
+            <!-- Tautan Navigasi -->
+            <nav aria-label="Navigasi Utama" id="endru_nav_links" class="endru_nav_links">
                 <a class="endru_nav_link" href="index.html">Beranda</a>
                 <a class="endru_nav_link" href="ourstory.html">Our Story</a>
                 <a class="endru_nav_link" href="berita.html">Berita</a>
@@ -440,10 +437,9 @@
             </nav>
         </div>
     </header>
-    <!-- END: MainHeader -->
 
     <main>
-        <!-- 1. Hero Loyalty Section (Sesuai Gambar 1: Background disesuaikan ke tema LARASA Espresso) -->
+        <!-- 1. Hero Loyalty Section -->
         <section id="endru_loyalty_hero" class="endru_loyalty_hero">
             <div class="endru_container">
                 <div class="endru_loyalty_hero_inner">
@@ -468,7 +464,7 @@
             </div>
         </section>
 
-        <!-- 2. Benefits Section (Sesuai Gambar 2: 4 Poin Keuntungan Member) -->
+        <!-- 2. Section Keuntungan Member -->
         <section id="endru_loyalty_benefits" class="endru_loyalty_benefits_section">
             <div class="endru_container">
                 <h2 class="endru_loyalty_section_title">
@@ -605,7 +601,7 @@
         </section>
     </main>
 
-    <!-- BEGIN: Footer (#endru_footer) -->
+    <!-- Footer (#endru_footer) -->
     <footer id="endru_footer">
         <div class="endru_container endru_footer_inner">
             <div>
@@ -624,9 +620,8 @@
             </div>
         </div>
     </footer>
-    <!-- END: Footer -->
 
-    <!-- Interactive JavaScript -->
+    <!-- Script Utama -->
     <script src="js/script.js"></script>
     <script>
         function handleLoyaltySubmit(e) {

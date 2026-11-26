@@ -11,7 +11,7 @@
     <!-- Custom CSS (Wajib kombinasi nama endru_) -->
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Specific Menu Page Styles (Prefix: endru_menu_*) */
+        /* Style Halaman Menu */
         .endru_menu_hero {
             background-color: var(--color-warm-beige);
             padding: 95px 0 65px;
@@ -63,7 +63,7 @@
             font-weight: 500;
         }
 
-        /* 1. Menu Terbaik Visual Showcase Grid (Sesuai Section Menu Terbaik di Beranda) */
+        /* 1. Grid Menu Terbaik */
         .endru_menu_best_grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -308,23 +308,23 @@
 </head>
 
 <body>
-    <!-- BEGIN: MainHeader (#endru_header) -->
-    <header id="endru_header" data-purpose="navigation-header">
+    <!-- Header Navigasi (#endru_header) -->
+    <header id="endru_header">
         <div class="endru_container endru_header_inner">
-            <!-- Brand Logo (Left) -->
-            <a aria-label="Beranda LARASA" class="endru_brand_logo" data-purpose="brand-logo" href="index.html">
+            <!-- Logo Brand -->
+            <a aria-label="Beranda LARASA" class="endru_brand_logo" href="index.html">
                 <img class="endru_logo_image" src="assets/images/logo.png" alt="LARASA Coffee Logo">
             </a>
 
-            <!-- Mobile Hamburger Toggle Button -->
+            <!-- Tombol Menu Mobile -->
             <button id="endru_mobile_toggle" class="endru_mobile_toggle" aria-label="Buka Menu Navigasi">
                 <span class="endru_toggle_line"></span>
                 <span class="endru_toggle_line"></span>
                 <span class="endru_toggle_line"></span>
             </button>
 
-            <!-- Center Navigation Links -->
-            <nav aria-label="Main Navigation" id="endru_nav_links" class="endru_nav_links">
+            <!-- Tautan Navigasi -->
+            <nav aria-label="Navigasi Utama" id="endru_nav_links" class="endru_nav_links">
                 <a class="endru_nav_link" href="index.html">Beranda</a>
                 <a class="endru_nav_link" href="ourstory.html">Our Story</a>
                 <a class="endru_nav_link" href="berita.html">Berita</a>
@@ -336,10 +336,9 @@
             </nav>
         </div>
     </header>
-    <!-- END: MainHeader -->
 
     <main>
-        <!-- Page Banner -->
+        <!-- Banner Halaman -->
         <section class="endru_menu_hero">
             <div class="endru_container">
                 <h1 class="endru_menu_page_title">KATALOG &amp; MENU KEDAI</h1>
@@ -349,11 +348,11 @@
             </div>
         </section>
 
-        <!-- Menu Catalog -->
+        <!-- Katalog Menu -->
         <section class="endru_menu_catalog_section">
             <div class="endru_container">
 
-                <!-- Kategori 1: MENU TERBAIK (Sesuaian dengan Section Menu Terbaik di Beranda) -->
+                <!-- Kategori 1: Menu Terbaik -->
                 <div class="endru_menu_category_header">
                     <h2 class="endru_menu_category_title">Menu Terbaik</h2>
                     <span class="endru_menu_category_tagline">4 Minuman Favorit &amp; Signature Terlaris LARASA</span>
@@ -429,7 +428,7 @@
                     </div>
                 </div>
 
-                <!-- Papan Menu Lengkap Kedai (Sesuai Referensi Board Menu Kedai Kopi) -->
+                <!-- Papan Menu Lengkap Kedai -->
                 <div class="endru_board_container">
                     <div class="endru_board_header">
                         <h2 class="endru_board_main_title">Daftar Menu Kedai LARASA</h2>
@@ -693,7 +692,7 @@
         </section>
     </main>
 
-    <!-- BEGIN: Footer (#endru_footer) -->
+    <!-- Footer (#endru_footer) -->
     <footer id="endru_footer">
         <div class="endru_container endru_footer_inner">
             <div>
@@ -712,9 +711,8 @@
             </div>
         </div>
     </footer>
-    <!-- END: Footer -->
 
-    <!-- Interactive JavaScript -->
+    <!-- Script Utama -->
     <script src="js/script.js"></script>
 </body>
 </html>
